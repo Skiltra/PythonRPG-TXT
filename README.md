@@ -1,1 +1,3 @@
 # PythonRPG-TXT
+- [ ] Grid
+- [ ] Events
