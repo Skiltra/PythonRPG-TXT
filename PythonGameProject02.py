@@ -177,3 +177,58 @@ if __name__ == "__main__":
     name = input()
     print("Good luck, " +name+ ".")
     Game_Start()
+
+# Oscars Code Screeshot 2d
+
+def directions ():
+   directions = ["West, East"]
+   userInput = ""
+   while userInput not in directions:
+      print("Which way would you like to go? West or East?")
+      userInput = input()
+      if userInput == "West":
+         print("You reach a bridge")
+         Part_2_Bridge ()
+      elif userInput == "East":
+         print("You reach a cave entrace")
+         Part_2_Cave ()
+      else:
+         print ("Please enter a valid direction")
+
+def Part_2_Bridge ():
+   directions = ["cross, go back"]
+   print("You come across and old rickety bridge")
+   userInput = ""
+   while userInput not in directions:
+      print("Would you like to cross or go back and try the other direction?")
+      if userInput == "cross":
+          print("you cross the bridge and it collapases dropping you into the river getting swept up in it's current.")
+          print("You wash up on a beach a your watch starts to glow, you notice a object letting of the same glow and pick it up.")
+          print("You obtain a lockpick and continue on.")
+          Part_2_Cabin
+      elif userInput == "go back":
+         Part_2_Cave ()
+      else:
+         print("Please enter a valid direction.")
+
+def Part_2_Cave ():
+   directions= ["enter, go back"]
+   print("You stand at the entrance of a dark ominous cave.")
+   userInput = ""
+   while userInput not in directions:
+      print("Do you enter the cave or try the other direction?")
+      userInput = input()
+      if userInput == "enter":
+         print("You enter the cave and sense a time object nearby.")
+         print("You go in the direction you sense the time object.")
+         print("It's a sword it seems to glow when near the watch, you pick it up.")
+         print("You obtain the sword and make you way out the cave.")
+         Part_2_Cabin
+      elif userInput == "go back":
+         Part_2_Bridge ()
+      else:("please enter a valid direction")
+
+def Part_2_Cabin ():
+   print("As you continue to walk on you sense the presence of another key to upgrade the watch")
+   print("You follow it to a cabin and enter")
+   print("In the cabin you find a key labled Hasltem")
