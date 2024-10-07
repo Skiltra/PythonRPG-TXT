@@ -226,7 +226,8 @@ def Part_2_Cave ():
          Part_2_Cabin
       elif userInput == "go back":
          Part_2_Bridge ()
-      else:("please enter a valid direction")
+      else:
+         print("Please enter a valid direction")
 
 def Part_2_Cabin ():
    print("As you continue to walk on you sense the presence of another key to upgrade the watch")
