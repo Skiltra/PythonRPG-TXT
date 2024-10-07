@@ -1,7 +1,4 @@
-import random
-
-
-inventory = []
+weapon = True
 
 def Game_Start ():
   Choices = ["Yes", "No"]
@@ -11,7 +8,7 @@ def Game_Start ():
     print("As you turn around, you see a Waylayman. He asks you are you a merchant?.")
     userInput = input()
     if userInput == "Yes":
-      print("Maybe I can interest you in some of my goods. It seems somehting is troubling you can I help you.")
+      print("Maybe I can interest you in some of my goods. It seems somehting is troubling youm can I help you.")
       print("Can you please help me with directions.")
       print("To the West there is a village, to your North there is a forest and to the East is a bandit camp.")
       Game_Start_Directions ()
@@ -22,8 +19,6 @@ def Game_Start ():
       Game_Start_Directions ()
     else:
       print("Please enter Yes or No.")   
-
-# Medieval Setting
 
 def Game_Start_Directions ():
   Directions = ["West 2", "North 2 East 1", "East 2"]
@@ -183,7 +178,7 @@ if __name__ == "__main__":
     print("Good luck, " +name+ ".")
     Game_Start()
 
-# Oscars Code screenshot 2d
+# Oscars Code Screeshot 2d
 
 def directions ():
    directions = ["West, East"]
