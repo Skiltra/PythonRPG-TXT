@@ -206,16 +206,18 @@ def mysterywin():
 def mysteryfail():
     Directions = ["West", "East"]
     userInput = ""
+    global inventory, health
     while userInput not in Directions:
       if inventory == "antidote":
         inventory.remove("antidote")
       else:
-        inventory.append("poisened") # also damage health
+        inventory.append("poisened")
+        health -= 20 # change if not impactful enough
 
 def mysteryfire():
     Directions = ["West", "East"]
     userInput = ""
-    print("you feel much strong not")
+    print(f"you defeat your opponent wiht the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
 
 def persuademystery():
     Directions = ["West", "East"]
