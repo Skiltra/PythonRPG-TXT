@@ -2,6 +2,7 @@ import random
 
 inventory = []
 element = []
+health = 100
 
 def Game_Start ():
   Choices = ["Yes", "No"]
