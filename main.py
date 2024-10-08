@@ -147,7 +147,7 @@ def Part_2_Shipyard ():
         else:
             print("Please enter a valid option for the adventure game.")
 
-# Later Segment
+# P2 Loacting objects and Mystery Man
 def P2_locatingWatchObjects():
     Directions = ["West", "East"]
     userInput = ""
@@ -171,7 +171,7 @@ def P2_keyfound():
       print("You continue from where you are at and continue towards another location it has a different sense and is close\n You come across a key, 'this must be it' you exclaim in excitement")
       inventory.append("key")
       if element == "fire":
-        mysteryfire()
+        P3_mysteryfire()
       else:
         mysteryconfront()
 
@@ -185,21 +185,21 @@ def mysteryconfront():
       if userInput == "attack" and inventory == "sword":
         print("you defeat him\nyou feel much more stronger now, perhaps its the watch doing it")
         inventory.append("strong")
-        dragonfound()
+        P3_dragonfound()
       elif userInput == "convince" and inventory == "lockpick":
         inventory.append("companion")
         print("Using the combined power of both indivudals with watches you track down the alien\nyou barter your lockpick for the item he took from the hidden door that you tried solving before he interupted you")
         inventory.append("glowing berries")
         inventory.remove("lockpick")
-        dragoncompanion()
+        P3_dragoncompanion()
       elif element == "fire":
         print("you use the combined power of the watch and encapsule him")
-        mysteryfire()
+        P3_mysteryfire()
       else:
-        mysteryfail()
+        P3_mysteryfail()
 
 ## check this code
-def mysteryfail():
+def P3_mysteryfail(): # need direction into other function
     Directions = ["", ""]
     userInput = ""
     global inventory, health
@@ -210,38 +210,38 @@ def mysteryfail():
         inventory.append("poisened")
         health -= 20 # change if not impactful enough
 
-def mysteryfire():
+def P3_mysteryfire():
     Directions = ["West", "East"]
     userInput = ""
     print(f"you defeat your opponent wiht the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
 
 # P3 Alien and Dragon
-def dragonfound():
+def P3_dragonfound():
     Directions = ["flee", "attack"]
     userInput = ""
     global health, inventory
     while userInput not in Directions:
       if inventory == "glowing berries":
-        health += 10
+        health += 10 # missing exit function
       else:
         print("you try very hard to defeat the dragon, you barely make it out")
         health -= 40
-        barelydragon()
+        P3_barelydragon()
 
-def dragoncompanion():
+def P3_dragoncompanion():
     Directions = ["", ""]
     userInput = ""
     global health, inventory
     while userInput not in Directions:
       if inventory == "revolver":
         print("while fighting the dragon knowing how impossible it is to survive, your companion is about to get attacked\n You quickly throw the gun towards him\n he shoots the dragon and you win")
-        windragon()
+        P3_windragon()
       else:
         print("The dragon leaps to your companion and kills him, but you manage to stab the dragon in its belly when its vulnerable, hence you absorb the power of the dragon and compnaion\n you feel strange absorbing your companion power as in something is not right")
         inventory.append("corrupted")
-        barelydragon()
+        P3_barelydragon()
 
-def barelydragon():
+def P3_barelydragon():
     Directions = ["", ""]
     userInput = ""
     global health, inventory
@@ -251,9 +251,9 @@ def barelydragon():
         gamewin()
       else:
         print("the alien ambush you but you are no match for them and you are shot by their blaster rifles")
-        gamedefeat()
+        gamelose()
       
-def windragon():
+def P3_windragon():
   Directions = ["", ""]
   userInput = ""
   while userInput not in Directions:
@@ -261,12 +261,12 @@ def windragon():
       print("finally you find where the aliens are you manage to setup an ambush, and with the elemnt of surpise you manage to take most out having to fight one by one what remains")
       gamewin()
     else:
-      gamedefeat()
+      gamelose()
 
 # Ending Screens: someone make functions rename if needed but connect to other events if not
 # def gamewin():
 
-# def gamedefeat():
+# def gamelose():
 
 # Main Program dont edit: make all code above
 if __name__ == "__main__":
