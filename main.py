@@ -2,8 +2,10 @@ import random
 
 inventory = []
 element = []
+score = 0
 health = 100
 
+# Program First Called Function
 def Game_Start ():
   Choices = ["Yes", "No"]
   print("You awake at the Hospital after a near death fatality. Whilst you sit up and relax the watch has cured. The big scars and broken bones in your body were feeling repaied. You felt full of life. Looking closely at the watch you notice a button on it. As you press it, you nptice you are travelling through a different dimesion.")
@@ -12,7 +14,7 @@ def Game_Start ():
     print("As you turn around, you see a Waylayman. He asks you are you a merchant?.")
     userInput = input()
     if userInput == "Yes":
-      print("""Maybe I can interest you in some of my goods. It seems somehting is troubling you can I help you.\n Can you please help me with directions?\nTo the West there is a village, to your North there is a forest and to the East is a bandit camp.""")
+      print("Maybe I can interest you in some of my goods. It seems somehting is troubling you can I help you.\n Can you please help me with directions?\nTo the West there is a village, to your North there is a forest and to the East is a bandit camp.")
       Game_Start_Directions ()
     elif userInput == "No":
       print("I see no problem.\n Can you please help me with directions\nTo the West there is a village, to your North there is a forest and to the East is a bandit camp")
@@ -25,21 +27,22 @@ def Game_Start_Directions ():
   Directions = ["West 2", "North 2 East 1", "East 2"]
   userInput = ""
   while userInput not in Directions:
-    print("Please eneter if you wish to go West 2 to the Village, North 2 East 1 to the forest or East 2 to the bandit camp")
+    print("Please eneter if you wish to go \n - West 2 to the Village, \n - North 2 East 1 to the forest or \n - East 2 to the bandit camp")
     userInput = input()
     if userInput == "West 2":
       print("This is the village.")
-      Part_1_The_Village ()
+      P1_The_Village ()
     elif userInput == "North 2 East 1":
       print("This is the forest.")
-      Part_1_The_Forest ()
+      P1_The_Forest ()
     elif userInput == "East 2":
       print("This is the Bandit Camp.")
-      Part_1_The_Bandit_Camp ()
+      P1_The_Bandit_Camp ()
     else:
       print("Please enter a valid option for the adventure game.")   
-      
-def Part_1_The_Village ():
+
+# Part 1 - Three Paths
+def P1_The_Village ():
   directions = ["Elders Hut", "Manor"]
   print("You arrive at the village and you are greeted by an farmer. The farmer tells you about the Elders Hut and the manor")
   userInput = ""
@@ -48,59 +51,58 @@ def Part_1_The_Village ():
     userInput = input()
     if userInput == "Elders Hut":
       print("This is the Elders Hut.")
-      Part_1_The_Elders_Hut ()
+      P1_The_Elders_Hut ()
     elif userInput == "Manor":
       print("This is the Manor.")
-      Part_1_The_Manor ()
+      P1_The_Manor ()
     else:
       print("Please enter a valid option for the adventure game.")
-      
-def Part_1_The_Elders_Hut ():
-  print("You arrive at the Elders hut, you decice to help the farmers to fight the Lords Army\n As you fight off the army, you are stopped by the peasants rebellion. You decide to take camp at the mountains\nAs you get to the mountains you stop near Obsidan Camp, unaware of a dragon nearby")
-  Part_1_Dragon_Attack ()
-      
-def Part_1_The_Manor ():
-  print("You decide to go to the manor, and help the lord along with the lords’ soldier to make the people pay the taxes.\n They fight back and the peasant are held back to a mountain.\nOut of the obsidan mine comes an Dragon..")
-  Part_1_Dragon_Attack ()
 
-# Testing Inventory
-def Part_1_The_Forest ():
+def P1_The_Elders_Hut ():
+  print("You arrive at the Elders hut, you decice to help the farmers to fight the Lords Army\n As you fight off the army, you are stopped by the peasants rebellion. You decide to take camp at the mountains\nAs you get to the mountains you stop near Obsidan Camp, unaware of a dragon nearby")
+  P1_Dragon_Attack ()
+
+def P1_The_Manor ():
+  print("You decide to go to the manor, and help the Lord along with the lord's soldier to make the people pay the taxes.\n They fight back and the peasant are held back to a mountain.\nOut of the obsidan mine comes an Dragon..")
+  P1_Dragon_Attack ()
+
+def P1_The_Forest ():
   directions = ["Flower", "Herb"]
   print("You arrive at the forest, as you do you see a Witch.\nThe witch tells you to collect a special herb for her. She tells you to the mountains to find one")
   userInput = ""
   while userInput not in directions:
-    print("At the mountain you see a Flower and a Hern, which do you want to go for.\nAfter picjing it up you head back to check with the witch.\nThe witch chesks to see what you have got.")
+    print("At the mountain you see a Flower and a Herb, which do you want to go for.\nAfter picking it up you head back to check with the witch.\nThe witch chesks to see what you have got.")
     userInput = input()
     if userInput == "Flower":
       print("This is not the correct flower. However if you go to the Obsidan near the mountain then this will be disregarded.")
-      Part_1_Dragon_Attack ()
+      P1_Dragon_Attack ()
     elif userInput == "Herb":
       print("This is the one, as a reward I shall give you this antidote to cure poison. \nAs you plan to leave, the Dragon appears.")
       global inventory
       inventory.append("antidote")
-      Part_1_Dragon_Attack ()
+      P1_Dragon_Attack ()
     else:
       print("Please enter a valid option for the adventure game.")
-      
-def Part_1_The_Bandit_Camp ():
+
+def P1_The_Bandit_Camp ():
   Directions = ["Work with Bandits", "Attack Bandits", "Spy on Bandits"]
   userInput = ""
   while userInput not in Directions:
     print("You are at the Bandit camp, please type if you want to Work with Bandits or Attack Bandits or Spy on Bandits")
     userInput = input()
     if userInput == "Work with Bandits":
-      print("You are to spy on the goblins.\nAs you listen to the goblins convseartion they ttalk about dragons weakness to fire from water.\nA mighty dragon appears.")
-      Part_1_Dragon_Attack ()
+      print("You are to spy on the goblins.\nAs you listen to the goblins convseartion they talk about dragons weakness to fire from water.\nA mighty dragon appears.")
+      P1_Dragon_Attack ()
     elif userInput == "Attack Bandits":
-      print("You decide to fight the bandits and are wounded. After being taken prisoner they try to use upoi as bait the defeat the dragon.\nThe dragon kills them off and you run.")
-      Part_1_Dragon_Attack ()
+      print("You decide to fight the bandits and are wounded. After being taken prisoner they try to use upon as bait the defeat the dragon.\nThe dragon kills them off and you run.")
+      P1_Dragon_Attack ()
     elif userInput == "Spy on Bandits":
       print("You decide to spy on the bandits, and sneak into there camp they talk about goblins over the river and about obsidian mine\nAs you explore you run into a dragon")
-      Part_1_Dragon_Attack ()
+      P1_Dragon_Attack ()
     else:
       print("Please enter a valid option for the adventure game.")
-      
-def Part_1_Dragon_Attack ():
+
+def P1_Dragon_Attack ():
     Directions = ["Worked with Bandits", "Attacked Bandits", "Spied on Bandits and Travelled to Goblin Camp.", "Spied on Bandits and Travelled to Obsidan Mine"]
     userInput = ""
     while userInput not in Directions:
@@ -108,25 +110,25 @@ def Part_1_Dragon_Attack ():
         userInput = input()
         if userInput == "Worked with Bandits":
             print("The dragon closes in on attack.\nwith the power of water you succeed in dragon fight get for this dragon evaraporates and has to flee.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         elif userInput == "Attacked Bandits":
             print("The dragon swoops in low to attack you\nYou are hurt by oncoming dragon attack. You try to chase down the dragon.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         elif userInput == "Spied on Bandits and Travelled to Goblin Camp":
             print("You spied on the bandits and visited the goblin camp to find out to use water on the dragon.\n with the power of water you succeed in dragon fight get for this dragon evaraporates and has to flee.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         elif userInput == "Spied on Bandits and Travelled to Obsidan Mine":
             print("You spied on the bandits and went straight to Obsidan Mine\n when dragon attacks you manage to scrape the dragon to make it bleed. The Dragon escapes.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         else:
             print("Please enter a valid option for the adventure game.")
 
 # Part 2
-def Part_2_Chasing_Asilant ():
+def P2_Chasing_Asilant ():
   print("""The player changes into a new time periodas the watch was glowing now and it opened a new path for him towards an office.\nAs you eneter the office there is a note that talks about a ritual to beat the dragon\nBefore you can move any further a Man appears who then teleports away when you see him.\nYou chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done\nThe enemey assilant tells him to stop, you do not know what you are dealing wiyj. Then he shifts away into another dimension""")
-  Part_2_Shipyard ()
+  P2_Shipyard ()
   
-def Part_2_Shipyard (): #Issue: this entire code loops on itself, also naming of the function doesnt align with story flow chart
+def P2_Shipyard (): #Issue: this entire code loops on itself, also naming of the function doesnt align with story flow chart
     Directions = ["North", "South"]
     userInput = ""
     while userInput not in Directions:
@@ -134,19 +136,21 @@ def Part_2_Shipyard (): #Issue: this entire code loops on itself, also naming of
         userInput = input()
         if userInput == "North":
             print("The dragon closes in on attack.\nwith the power of water you succeed in dragon fight get for this dragon evaraporates and has to flee.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         elif userInput == "Attacked Bandits":
             print("The dragon swoops in low to attack you\nYou are hurt by oncoming dragon attack. You try to chase down the dragon.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         elif userInput == "Spied on Bandits and Travelled to Goblin Camp":
             print("You spied on the bandits and visited the gobline camp to finf out to use water on the dragon.\nwith the power of water you succeed in dragon fight get for this dragon evaraporates and has to flee.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         elif userInput == "Spied on Bandits and Travelled to Obsidan Mine":
             print("You spied on the bandits and went straight to Obsidan Mine\nwhen dragon attacks you manage to scrape the dragon to make it bleed. The Dragon escapes.")
-            Part_2_Chasing_Asilant ()
+            P2_Chasing_Asilant ()
         else:
             print("Please enter a valid option for the adventure game.")
-# William Code
+# Shafire Code Link to Before
+
+# William Code Link to Shafire code
 def P2_suprisemysteryman ():
     directions = ["Ambushed by Mysterious Figure", "Attack Mysterious Figure"]
     userinput = ""
@@ -163,16 +167,16 @@ def P2_suprisemysteryman ():
           Puzzle()
 
 def Puzzle ():
-  print("It asks you to align the stone based on what elements oppose, based on the following statements")
-  print("A series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element")
+  print("It asks you to align the stone based on what elements oppose, based on the following statements\nA series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element")
   userinput = input{}
+  global health
   if userinput == "Player Failed"
     print("Player dies and is attacked by all elements")
-    print("End Screen")
+    health -= 100
+    gameend()
   elif userinput == "Player Succeeds"
-    print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle")
-    print("Watch Upgrades")
-    print("With this the player senses several locations to head to")
+    print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle\n")
+    print("Watch Upgrades") # placeholder no story to add to, needs expanded alien fight at the end to be relevant
 
 # P2 Loacting objects and Mystery Man
 def P2_locatingWatchObjects():
@@ -275,10 +279,10 @@ def P3_barelydragon():
     while userInput not in Directions:
       if health >= 60:
         print("you are ambushed it appear the aliens found you first, but you manages to surive")
-        gamewin()
+        gameend()
       else:
         print("the alien ambush you but you are no match for them and you are shot by their blaster rifles")
-        gamelose()
+        gameend()
       
 def P3_windragon():
   Directions = ["", ""]
@@ -286,14 +290,17 @@ def P3_windragon():
   while userInput not in Directions:
     if health >= 40:
       print("finally you find where the aliens are you manage to setup an ambush, and with the elemnt of surpise you manage to take most out having to fight one by one what remains")
-      gamewin()
+      gameend()
     else:
-      gamelose()
+      gameend()
 
 # Ending Screens: someone make functions rename if needed but connect to other events if not
-# def gamewin():
-
-# def gamelose():
+def gameend():
+  global score, health
+    if health >= 1:
+      print(f"you completed the game with a score of {score} and your remaining health was {health}")
+    else:
+      print(f"you lost the game with a score of {score}") 
 
 # Main Program dont edit: make all code above
 if __name__ == "__main__":
