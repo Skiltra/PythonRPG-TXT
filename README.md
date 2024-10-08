@@ -1,4 +1,5 @@
-# Rules
+# Times Ascent TXT RPG
+## Rules
 Use dev branch, upon merging dev with main create pull request for approval of all people involved. testing locally.
 
 Assumed Roles: 
