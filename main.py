@@ -126,7 +126,7 @@ def Part_2_Chasing_Asilant ():
   print("""The player changes into a new time periodas the watch was glowing now and it opened a new path for him towards an office.\nAs you eneter the office there is a note that talks about a ritual to beat the dragon\nBefore you can move any further a Man appears who then teleports away when you see him.\nYou chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done\nThe enemey assilant tells him to stop, you do not know what you are dealing wiyj. Then he shifts away into another dimension""")
   Part_2_Shipyard ()
   
-def Part_2_Shipyard ():
+def Part_2_Shipyard (): #Issue: this entire code loops on itself, also naming of the function doesnt align with story flow chart
     Directions = ["North", "South"]
     userInput = ""
     while userInput not in Directions:
@@ -146,6 +146,33 @@ def Part_2_Shipyard ():
             Part_2_Chasing_Asilant ()
         else:
             print("Please enter a valid option for the adventure game.")
+# William Code
+def P2_suprisemysteryman ():
+    directions = ["Ambushed by Mysterious Figure", "Attack Mysterious Figure"]
+    userinput = ""
+    global health
+    while userinput not in directions:
+        print["What would you like to do?"]
+        userinput = input{}
+        if userinput == "Ambushed by Mysterious Figure" #wont work due to it not being a choice, will need a condition before and a simple "defend from ambush" and "attack mystery man"
+          print("He quickly flees scene clearly not wanting to engage in battle\nYou find a path leading to the clearing in the forest some puzzle to unlock a door")
+          health -= 10
+          Puzzle()
+        elif userinput == "Attack Mysterious Figure"
+          print("You follow a blood trail of a stone alligned in the forest patch and puzzle")
+          Puzzle()
+
+def Puzzle ():
+  print("It asks you to align the stone based on what elements oppose, based on the following statements")
+  print("A series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element")
+  userinput = input{}
+  if userinput == "Player Failed"
+    print("Player dies and is attacked by all elements")
+    print("End Screen")
+  elif userinput == "Player Succeeds"
+    print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle")
+    print("Watch Upgrades")
+    print("With this the player senses several locations to head to")
 
 # P2 Loacting objects and Mystery Man
 def P2_locatingWatchObjects():
@@ -221,7 +248,7 @@ def P3_dragonfound():
     userInput = ""
     global health, inventory
     while userInput not in Directions:
-      if inventory == "glowing berries":
+      if inventory == "glowing berries" and "poisened" not in inventory:
         health += 10 # missing exit function
       else:
         print("you try very hard to defeat the dragon, you barely make it out")
