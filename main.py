@@ -8,7 +8,7 @@ health = 100
 # Program First Called Function
 def Game_Start ():
   Choices = ["Yes", "No"]
-  print("You awake at the Hospital after a near death fatality. Whilst you sit up and relax the watch has cured. The big scars and broken bones in your body were feeling repaied. You felt full of life. Looking closely at the watch you notice a button on it. As you press it, you nptice you are travelling through a different dimesion.")
+  print("You awake at the Hospital after a near death fatality. Whilst you sit up and relax the watch has cured. The big scars and broken bones in your body were feeling repaired. You felt full of life. Looking closely at the watch you notice a button on it. As you press it, you nptice you are travelling through a different dimesion.")
   userInput = ""
   while userInput not in Choices:
     print("As you turn around, you see a Waylayman. He asks you are you a merchant?.")
@@ -167,16 +167,30 @@ def P2_suprisemysteryman ():
           Puzzle()
 
 def Puzzle ():
+  outcomes = ["Wind", "Earth", "Water", "Fire"]
   print("It asks you to align the stone based on what elements oppose, based on the following statements\nA series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element")
-  userinput = input()
+  userinput = ""
   global health
-  if userinput == "Player Failed":
-    print("Player dies and is attacked by all elements")
-    health -= 100
-    gameend()
-  elif userinput == "Player Succeeds":
-    print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle\n")
-    print("Watch Upgrades") # placeholder no story to add to, needs expanded alien fight at the end to be relevant
+  while userinput not in outcomes:
+    print("Earth is strong against water, but is weak against?")
+    Earthinput = input()
+    print("Water is strong against Fire, but is weak against?")
+    Waterinput = input()
+    print("Fire is strong against wind, but is weak against?")
+    Fireinput = input()
+    print("Wind is strong against Earth, but is weak against?")
+    Windinput = input()
+    if Earthinput != "Wind" or Waterinput != "Earth" or Fireinput != "Water" or Windinput !="Fire":
+      print("You fail and a result you die after being attacked by all elements")
+      health -= 150
+      gameend()
+    elif Earthinput == "Wind" and Waterinput == "Earth" and Fireinput == "Water" and Windinput =="Fire":
+      print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle")
+      print("Watch Upgrades")
+      print("With this the player senses several locations to head to")
+      directions_List ()
+    else:
+      print("Please enter a valid option for the adventure game.")  
 
 # P2 Loacting objects and Mystery Man
 def P2_locatingWatchObjects():
@@ -282,8 +296,9 @@ def P3_barelydragon():
         gameend()
       else:
         print("the alien ambush you but you are no match for them and you are shot by their blaster rifles")
+        health -= 150
         gameend()
-      
+
 def P3_windragon():
   Directions = ["", ""]
   userInput = ""
