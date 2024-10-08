@@ -21,7 +21,6 @@ def Game_Start ():
       print("Please enter Yes or No.")   
 
 # Medieval Setting
-
 def Game_Start_Directions ():
   Directions = ["West 2", "North 2 East 1", "East 2"]
   userInput = ""
@@ -67,7 +66,7 @@ def Part_1_The_Manor ():
 # Testing Inventory
 def Part_1_The_Forest ():
   directions = ["Flower", "Herb"]
-  print("You arrive at the forest, as you do you see a Witch.\nThe witch tells you to collec a special herb for her. She tells you to the mountains to find one")
+  print("You arrive at the forest, as you do you see a Witch.\nThe witch tells you to collect a special herb for her. She tells you to the mountains to find one")
   userInput = ""
   while userInput not in directions:
     print("At the mountain you see a Flower and a Hern, which do you want to go for.\nAfter picjing it up you head back to check with the witch.\nThe witch chesks to see what you have got.")
@@ -123,7 +122,6 @@ def Part_1_Dragon_Attack ():
             print("Please enter a valid option for the adventure game.")
 
 # Part 2
-
 def Part_2_Chasing_Asilant ():
   print("""The player changes into a new time periodas the watch was glowing now and it opened a new path for him towards an office.\nAs you eneter the office there is a note that talks about a ritual to beat the dragon\nBefore you can move any further a Man appears who then teleports away when you see him.\nYou chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done\nThe enemey assilant tells him to stop, you do not know what you are dealing wiyj. Then he shifts away into another dimension""")
   Part_2_Shipyard ()
@@ -150,10 +148,10 @@ def Part_2_Shipyard ():
             print("Please enter a valid option for the adventure game.")
 
 # Later Segment
-def locatingWatchObjects():
+def P2_locatingWatchObjects():
     Directions = ["West", "East"]
     userInput = ""
-    global invenory
+    global inventory
     print("with this the player senses several location of the item needed to unlock the door, East is a path leading to a cliffside, and west towards a bridge following a road")
     while userInput not in Directions:
       if userInput == "West":
@@ -163,9 +161,9 @@ def locatingWatchObjects():
         print("coming close to cliff a cave is seen, you enter the cave\n You see a glowing sword, you pick up the sword which is one of the items sense by the watch")
         inventory.append("sword")
       else:
-        keyfound()
+        P2_keyfound()
 
-def keyfound():
+def P2_keyfound():
     Directions = ["West", "East"]
     userInput = ""
     global invenory
@@ -179,32 +177,30 @@ def keyfound():
 
 # Unlocking of the Door.  Needs testing that the and statement does not need index to mention, also idea of replacing sword with damaged sword for later outcomes of dragon fight
 def mysteryconfront():
-    Directions = ["West", "East"]
+    Directions = ["convince", "attack"]
     userInput = ""
     global element, inventory
     print("You come across the door, you have the key, you Use key the key both ways and finally unlock it\n you back away from the door as it opens you hear its mechanism inside the rock moving.\n you see the man who quickly jumps in front of you blocking the way to the content of inside.")
     while userInput not in Directions:
       if userInput == "attack" and inventory == "sword":
-        print("you defeat him")
-        mysterywin()
-      elif element == "fire":
-        print("you use the combined power of the watch and encapsule him")
-      elif inventory == "lockpick":
-        print("you barter your lockpick for the item he took from the hidden door that you tried solving before he interupted you")
+        print("you defeat him\nyou feel much more stronger now, perhaps its the watch doing it")
+        inventory.append("strong")
+        dragonfound()
+      elif userInput == "convince" and inventory == "lockpick":
+        inventory.append("companion")
+        print("Using the combined power of both indivudals with watches you track down the alien\nyou barter your lockpick for the item he took from the hidden door that you tried solving before he interupted you")
         inventory.append("glowing berries")
         inventory.remove("lockpick")
-        persuademystery()
+        dragoncompanion()
+      elif element == "fire":
+        print("you use the combined power of the watch and encapsule him")
+        mysteryfire()
       else:
         mysteryfail()
 
-def mysterywin():
-    print("you feel much more stronger now, perhaps its the watch doing it")
-    while inventory not == "strong":
-      inventory.append("strong")
-
 ## check this code
 def mysteryfail():
-    Directions = ["West", "East"]
+    Directions = ["", ""]
     userInput = ""
     global inventory, health
     while userInput not in Directions:
@@ -219,10 +215,58 @@ def mysteryfire():
     userInput = ""
     print(f"you defeat your opponent wiht the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
 
-def persuademystery():
-    Directions = ["West", "East"]
+# P3 Alien and Dragon
+def dragonfound():
+    Directions = ["flee", "attack"]
     userInput = ""
+    global health, inventory
     while userInput not in Directions:
+      if inventory == "glowing berries":
+        health += 10
+      else:
+        print("you try very hard to defeat the dragon, you barely make it out")
+        health -= 40
+        barelydragon()
+
+def dragoncompanion():
+    Directions = ["", ""]
+    userInput = ""
+    global health, inventory
+    while userInput not in Directions:
+      if inventory == "revolver":
+        print("while fighting the dragon knowing how impossible it is to survive, your companion is about to get attacked\n You quickly throw the gun towards him\n he shoots the dragon and you win")
+        windragon()
+      else:
+        print("The dragon leaps to your companion and kills him, but you manage to stab the dragon in its belly when its vulnerable, hence you absorb the power of the dragon and compnaion\n you feel strange absorbing your companion power as in something is not right")
+        inventory.append("corrupted")
+        barelydragon()
+
+def barelydragon():
+    Directions = ["", ""]
+    userInput = ""
+    global health, inventory
+    while userInput not in Directions:
+      if health >= 60:
+        print("you are ambushed it appear the aliens found you first, but you manages to surive")
+        gamewin()
+      else:
+        print("the alien ambush you but you are no match for them and you are shot by their blaster rifles")
+        gamedefeat()
+      
+def windragon():
+  Directions = ["", ""]
+  userInput = ""
+  while userInput not in Directions:
+    if health >= 40:
+      print("finally you find where the aliens are you manage to setup an ambush, and with the elemnt of surpise you manage to take most out having to fight one by one what remains")
+      gamewin()
+    else:
+      gamedefeat()
+
+# Ending Screens: someone make functions rename if needed but connect to other events if not
+# def gamewin():
+
+# def gamedefeat():
 
 # Main Program dont edit: make all code above
 if __name__ == "__main__":
