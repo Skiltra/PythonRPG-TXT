@@ -157,24 +157,24 @@ def P2_suprisemysteryman ():
     global health
     while userinput not in directions:
         print["What would you like to do?"]
-        userinput = input{}
-        if userinput == "Ambushed by Mysterious Figure" #wont work due to it not being a choice, will need a condition before and a simple "defend from ambush" and "attack mystery man"
+        userinput = input()
+        if userinput == "Ambushed by Mysterious Figure": #wont work due to it not being a choice, will need a condition before and a simple "defend from ambush" and "attack mystery man"
           print("He quickly flees scene clearly not wanting to engage in battle\nYou find a path leading to the clearing in the forest some puzzle to unlock a door")
           health -= 10
           Puzzle()
-        elif userinput == "Attack Mysterious Figure"
+        elif userinput == "Attack Mysterious Figure":
           print("You follow a blood trail of a stone alligned in the forest patch and puzzle")
           Puzzle()
 
 def Puzzle ():
   print("It asks you to align the stone based on what elements oppose, based on the following statements\nA series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element")
-  userinput = input{}
+  userinput = input()
   global health
-  if userinput == "Player Failed"
+  if userinput == "Player Failed":
     print("Player dies and is attacked by all elements")
     health -= 100
     gameend()
-  elif userinput == "Player Succeeds"
+  elif userinput == "Player Succeeds":
     print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle\n")
     print("Watch Upgrades") # placeholder no story to add to, needs expanded alien fight at the end to be relevant
 
@@ -297,10 +297,10 @@ def P3_windragon():
 # Ending Screens: someone make functions rename if needed but connect to other events if not
 def gameend():
   global score, health
-    if health >= 1:
-      print(f"you completed the game with a score of {score} and your remaining health was {health}")
-    else:
-      print(f"you lost the game with a score of {score}") 
+  if health >= 1:
+    print(f"you completed the game with a score of {score} and your remaining health was {health}")
+  else:
+    print(f"you lost the game with a score of {score}") 
 
 # Main Program dont edit: make all code above
 if __name__ == "__main__":
