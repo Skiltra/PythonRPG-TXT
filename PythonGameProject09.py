@@ -43,7 +43,7 @@ def Character_Choice ():
     Element_Type = ""
     while Element_Type not in Element:
         print("Please enter your element; Earth, Water, Fire or Wind")
-        Element_Type = input()
+        Element_Type = input().capitalize
         if Element_Type == "Earth":
             print("You are an Earth element")
             Game_Start ()
@@ -255,17 +255,14 @@ def unmarked_crate():
 
 def ship():
   global score
-  print("")
-  print("You try to sneak inside one of the cargo ships.")
+  print("\nYou try to sneak inside one of the cargo ships.")
   if element == "Wind":
-    print("")
-    print("You conjure a gust of wind that sends boxes toppling over. As the men scramble to see what's happened, you seize the moment and slip into the ship unnoticed. Your heart races as you make your way deeper into the shadows. \n As you explore the ship, you stumble upon a stack of papers. Some are yellowed with age, \n while others look as if they’re from a time yet to come. Among them, you find a drawing of your watch. \n Instantly, you feel your understanding of the watch deepen, as if the very sight of the picture unlocks hidden knowledge within you. \n What secrets could this watch be holding? \n The watch glows and transforms, seemingly upgraded in a way you instinctively recognise.")
+    print("\nYou conjure a gust of wind that sends boxes toppling over. As the men scramble to see what's happened, you seize the moment and slip into the ship unnoticed. Your heart races as you make your way deeper into the shadows. \n As you explore the ship, you stumble upon a stack of papers. Some are yellowed with age, \n while others look as if they’re from a time yet to come. Among them, you find a drawing of your watch. \n Instantly, you feel your understanding of the watch deepen, as if the very sight of the picture unlocks hidden knowledge within you. \n What secrets could this watch be holding? \n The watch glows and transforms, seemingly upgraded in a way you instinctively recognise.")
     score += 10
     P2_suprisemysteryman
     # add location to part 2c here please
   else:
-    print("")
-    print("You attempt to sneak into the ship, but you’re spotted. Fortunately, they're far enough away that you gain a head start as you begin running. \n Your heart races as you hide, realising you’re near the unloaded crates.")
+    print("\nYou attempt to sneak into the ship, but you’re spotted. Fortunately, they're far enough away that you gain a head start as you begin running. \n Your heart races as you hide, realising you’re near the unloaded crates.")
     crate_again = input("Do you opt for the crates instead? ").lower()
   if crate_again in ["yes", "y"]:
     crates()
@@ -279,12 +276,9 @@ def reception():
     print("")
     reception_ans = input("You reach the reception area, finding it deserted. The reception desk is empty. Do you take a moment to look around before venturing into the backroom? ").lower()
     if reception_ans in ["no", "n"]:
-        print("")
         backroom()
     elif reception_ans in ["yes", "y"]:
-        print("")
-        print("You scan the reception area and spot a revolver lying on a table. The weight of the situation hits you as you pick it up.")
-        print("A door labelled 'Head Office' is locked, but the backroom is unlocked.")
+        print("You scan the reception area and spot a revolver lying on a table. The weight of the situation hits you as you pick it up.\n")
         inventory.append("revolver")
         backroom()
     else:
@@ -373,7 +367,7 @@ def Puzzle ():
       directions_List ()
     else:
       print("Please enter a valid option for the adventure game.")    
-    
+
 # Oscars bit   
 def directions_List ():
   directions = ["West", "East"]
@@ -449,38 +443,41 @@ def mysteryconfront():
             inventory.append("glowing berries")
             inventory.remove("lockpick")
             P3_dragoncompanion()
-        elif element == "fire":
-            print("you use the combined power of the watch and encapsule him")
-            P3_mysteryfire()
+        elif userInput == "" and element == "fire":
+            print(f"you defeat your opponent wiht the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
+            P3_dragonfound()
         else:
-            P3_mysteryfail()
+            P3_mysteryAmbush()
 
 # check this code
-def P3_mysteryfail(): # need direction into other function
-    Directions = ["", ""]
-    userInput = ""
-    global inventory, health
-    while userInput not in Directions:
-      if inventory == "antidote":
-        inventory.remove("antidote")
-        P3_dragonfound
-      else:
-        inventory.append("poisened")
-        health -= 20 # change if not impactful enough
-        P3_dragonfound
+def P3_mysteryAmbush():
+  global inventory, health
+  if inventory == "antidote":
+    inventory.remove("antidote")
+    P3_dragonfound()
+  else:
+    inventory.append("poisened")
+    health -= 20
+    P3_dragonfound()
         
-def P3_mysteryfire():
-    print(f"you defeat your opponent wiht the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
-    P3_dragonfound
-    
 # P3 Alien and Dragon does not seem to work
 def P3_dragonfound():
     Directions = ["flee", "attack"]
     userInput = ""
-    global health, inventory
+    global health, inventory, element
     while userInput not in Directions:
-      if inventory == "glowing berries" and "poisened" not in inventory:
+      print("You come across a dragon\b you can try to flee or attack")
+      userInput = input()
+      if inventory == "glowing berries" and userInput == "attack":
         health += 10 # missing exit function
+        P3_windragon()
+      elif userInput == "flee" and element == "fire":
+        print("the dragons attack does not harm you, but it lands on the ground to attack physically")
+        P3_barelydragon()
+      elif userInput == "flee":
+        health -= 200
+        print("You try to flee but are spotted, it set you alight as you had your back turned")
+        gameend()
       else:
         print("you try very hard to defeat the dragon, you barely make it out")
         health -= 40
@@ -499,6 +496,7 @@ def P3_dragoncompanion():
         inventory.append("corrupted")
         P3_barelydragon()
 
+# Dragon Fight Outcomes
 def P3_barelydragon():
     Directions = ["", ""]
     userInput = ""
@@ -539,12 +537,6 @@ def gameend():
 
   """)
 
-
-# Ending Screens: someone make functions rename if needed but connect to other events if not
-# def gamewin():
-
-# def gamedefeat():
-  
   Main_Menu ()
 
 def Game_Exit ():

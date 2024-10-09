@@ -188,7 +188,7 @@ def Puzzle ():
       print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle")
       print("Watch Upgrades")
       print("With this the player senses several locations to head to")
-      directions_List ()
+      directions_List () # need someone to add this function
     else:
       print("Please enter a valid option for the adventure game.")  
 
