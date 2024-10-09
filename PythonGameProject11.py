@@ -447,29 +447,31 @@ def Part_2_Cave ():
 # Unlocking of the Door.  Needs testing that the and statement does not need index to mention, also idea of replacing sword with damaged sword for later outcomes of dragon fight
 def mysteryconfront():
     Directions = ["convince", "attack", "fire"]
-    mysterymanconfront = ""
+    userInput = ""
     global element, inventory
-    print (inventory)
-    print("You come across the door, you have the key, you Use key the key both ways and finally unlock it\n you back away from the door as it opens you hear its mechanism inside the rock moving.\n you see the man who quickly jumps in front of you blocking the way to the content of inside.")
-    while mysterymanconfront not in Directions:
-        mysterymanconfront = input()
-        if mysterymanconfront == "attack" and inventory == "sword":
+    while userInput or element not in Directions:
+        print("You come across the door, you have the key, you Use key the key both ways and finally unlock it\n you back away from the door as it opens you hear its mechanism inside the rock moving.\n you see the man who quickly jumps in front of you blocking the way to the content of inside.")
+        userInput = input()
+        if userInput == "attack" and "sword" in inventory:
             print("you defeat him\nyou feel much more stronger now, perhaps its the watch doing it")
             inventory.append("strong")
             P3_dragonfound()
-        elif mysterymanconfront == "convince" and inventory == "lockpick":
+            break
+        elif userInput == "convince" and "lockpick" in inventory:
             inventory.append("companion")
             print("Using the combined power of both indivudals with watches you track down the alien\nyou barter your lockpick for the item he took from the hidden door that you tried solving before he interupted you")
             inventory.append("glowing berries")
             inventory.remove("lockpick")
             P3_dragoncompanion()
+            break
         elif element == "fire":
             print(f"you defeat your opponent with the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
-            P3_mysteryfire()
-        elif mysterymanconfront == "attack":
             P3_dragonfound()
+        elif userInput == "attack":
+           P3_mysteryAmbush
         else:
-            P3_mysteryAmbush()
+            print("failed input for mystery confront returning")
+            mysteryconfront():
 
 # check this code
 def P3_mysteryAmbush(): # need direction into other function
