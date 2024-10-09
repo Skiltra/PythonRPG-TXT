@@ -429,15 +429,13 @@ def Part_2_Cave ():
     else:
       print("Please enter a valid direction.")
 
-# this is contents of you main.py work file, can skip this. End screen, Game Exit and main game start up at bottom has been modified by Kiren.
 # Unlocking of the Door.  Needs testing that the and statement does not need index to mention, also idea of replacing sword with damaged sword for later outcomes of dragon fight
 def mysteryconfront():
-    Directions = ["convince", "attack"]
+    Directions = ["convince", "attack", "fire"]
     userInput = ""
     global element, inventory
-    print (inventory)
-    print("You come across the door, you have the key, you Use key the key both ways and finally unlock it\n you back away from the door as it opens you hear its mechanism inside the rock moving.\n you see the man who quickly jumps in front of you blocking the way to the content of inside.")
-    while userInput not in Directions:
+    while userInput or element not in Directions:
+        print("You come across the door, you have the key, you Use key the key both ways and finally unlock it\n you back away from the door as it opens you hear its mechanism inside the rock moving.\n you see the man who quickly jumps in front of you blocking the way to the content of inside.")
         userInput = input()
         if userInput == "attack" and inventory == "sword":
             print("you defeat him\nyou feel much more stronger now, perhaps its the watch doing it")
@@ -450,77 +448,79 @@ def mysteryconfront():
             inventory.remove("lockpick")
             P3_dragoncompanion()
         elif element == "fire":
-            print("you use the combined power of the watch and encapsule him")
-            P3_mysteryfire()
+            print(f"you defeat your opponent with the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
+            P3_dragonfound()
         else:
-            P3_mysteryfail()
+            P3_mysteryAmbush()
 
-# check this code
-def P3_mysteryfail(): # need direction into other function
-    Directions = ["", ""]
-    userInput = ""
-    global inventory, health
-    while userInput not in Directions:
-      if inventory == "antidote":
-        inventory.remove("antidote")
-        P3_dragonfound
-      else:
-        inventory.append("poisened")
-        health -= 20 # change if not impactful enough
-        P3_dragonfound
-        
-def P3_mysteryfire():
-    print(f"you defeat your opponent wiht the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
-    P3_dragonfound
-    
+def P3_mysteryAmbush():
+  global inventory, health
+  if inventory == "antidote":
+    inventory.remove("antidote")
+    P3_dragonfound()
+  else:
+    inventory.append("poisened")
+    health -= 20
+    P3_dragonfound()
+
 # P3 Alien and Dragon does not seem to work
 def P3_dragonfound():
     Directions = ["flee", "attack"]
     userInput = ""
-    global health, inventory
+    global health, inventory, element
     while userInput not in Directions:
-      if inventory == "glowing berries" and "poisened" not in inventory:
+      print("You come across a dragon\b you can try to flee or attack")
+      userInput = input()
+      if inventory == "glowing berries" and userInput == "attack":
         health += 10 # missing exit function
-      else:
-        print("you try very hard to defeat the dragon, you barely make it out")
-        health -= 40
+        P3_windragon()
+      elif userInput == "attack":
+         P3_barelydragon()
+      elif userInput == "flee" and element == "fire":
+        print("the dragons attack does not harm you, but it lands on the ground to attack physically")
         P3_barelydragon()
+      elif userInput == "flee":
+        health -= 40
+        print("You try to flee but are spotted, it set you alight as you had your back turned")
+        P3_barelydragon()
+      else:
+        print("invalid input")
 
 def P3_dragoncompanion():
-    Directions = ["", ""]
+    Directions = ["attack"]
     userInput = ""
     global health, inventory
     while userInput not in Directions:
-      if inventory == "revolver":
+      print("you and your companion quickly see a dragon approaching\n type attack")
+      userInput = input()
+      if userInput == "attack" and inventory == "revolver":
         print("while fighting the dragon knowing how impossible it is to survive, your companion is about to get attacked\n You quickly throw the gun towards him\n he shoots the dragon and you win")
         P3_windragon()
-      else:
+      elif userInput == "attack" and inventory == "companion":
         print("The dragon leaps to your companion and kills him, but you manage to stab the dragon in its belly when its vulnerable, hence you absorb the power of the dragon and compnaion\n you feel strange absorbing your companion power as in something is not right")
+        inventory.remove("companion")
         inventory.append("corrupted")
         P3_barelydragon()
-
-def P3_barelydragon():
-    Directions = ["", ""]
-    userInput = ""
-    global health, inventory
-    while userInput not in Directions:
-      if health >= 60:
-        print("you are ambushed it appear the aliens found you first, but you manages to surive")
-        gameend()
       else:
-        print("the alien ambush you but you are no match for them and you are shot by their blaster rifles")
-        health -= 150
-        gameend()
-      
-def P3_windragon():
-  Directions = ["", ""]
-  userInput = ""
-  while userInput not in Directions:
-    if health >= 40:
-      print("finally you find where the aliens are you manage to setup an ambush, and with the elemnt of surpise you manage to take most out having to fight one by one what remains")
+         print("invalid input, try again")
+
+# Dragon Fight Outcomes
+def P3_barelydragon():
+    global health, inventory
+    if health >= 60:
+      print("you are ambushed it appear the aliens found you first, but you manages to surive")
       gameend()
     else:
+      print("the alien ambush you but you are no match for them and you are shot by their blaster rifles")
+      health -= 150
       gameend()
+      
+def P3_windragon():
+  if health >= 40:
+    print("finally you find where the aliens are you manage to setup an ambush, and with the elemnt of surpise you manage to take most out having to fight one by one what remains")
+    gameend()
+  else:
+    gameend()
       
 # Ending Screens: someone make functions rename if needed but connect to other events if not
 def gameend():
@@ -530,7 +530,6 @@ def gameend():
   else:
     print(f"you lost the game with a score of {score}") 
     print("""
-
   ____                            ___                 _ 
  / ___| __ _ _ __ ___   ___      / _ \__   _____ _ __| |
 | |  _ / _` | '_ ` _ \ / _ \    | | | \ \ / / _ \ '__| |
@@ -539,11 +538,18 @@ def gameend():
 
   """)
 
+def Game_Exit ():
+  choice = input('Press Q to Quit')
+  if choice == 'q':
+    # break or return or..
+    import sys
+    sys.exit(0)
 
-# Ending Screens: someone make functions rename if needed but connect to other events if not
-# def gamewin():
-
-# def gamedefeat():
+if __name__ == "__main__":
+  while True:
+    print("Welcome to the Adventure Game!")
+    print("You can choose to walk in multiple directions to find a way out.")
+    Main_Menu ()
   
   Main_Menu ()
 
