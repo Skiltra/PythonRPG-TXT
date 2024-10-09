@@ -444,7 +444,7 @@ def mysteryconfront():
         elif element == "fire":
             print(f"you defeat your opponent with the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
             P3_dragonfound()
-        else:
+        else:dsads
             P3_mysteryAmbush()
 
 def P3_mysteryAmbush():
