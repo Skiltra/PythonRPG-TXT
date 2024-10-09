@@ -550,18 +550,5 @@ if __name__ == "__main__":
     print("Welcome to the Adventure Game!")
     print("You can choose to walk in multiple directions to find a way out.")
     Main_Menu ()
-  
+
   Main_Menu ()
-
-def Game_Exit ():
-  choice = input('Press Q to Quit')
-  if choice == 'q':
-    # break or return or..
-    import sys
-    sys.exit(0)
-
-if __name__ == "__main__":
-  while True:
-    print("Welcome to the Adventure Game!")
-    print("You can choose to walk in multiple directions to find a way out.")
-    Main_Menu ()
