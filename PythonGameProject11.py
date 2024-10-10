@@ -449,7 +449,7 @@ def mysteryconfront():
     Directions = ["convince", "attack", "fire"]
     userInput = ""
     global element, inventory
-    while userInput not in Directions:
+    while userInput or element not in Directions:
         print("You come across the door, you have the key, you Use key the key both ways and finally unlock it\n you back away from the door as it opens you hear its mechanism inside the rock moving.\n you see the man who quickly jumps in front of you blocking the way to the content of inside.")
         userInput = input()
         if userInput == "attack" and "sword" in inventory:
@@ -464,55 +464,14 @@ def mysteryconfront():
             inventory.remove("lockpick")
             P3_dragoncompanion()
             break
-        elif userInput == element == "fire":
+        elif element == "fire":
             print(f"you defeat your opponent with the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
             P3_dragonfound()
         elif userInput == "attack":
            P3_mysteryAmbush
         else:
             print("failed input for mystery confront returning")
-            mysteryconfront()
-
-
-def mysteryconfront():
-    mysteryconfontfight = ["convince", "attack", "fire", "normalattack"]
-    mysteryconfontactions = ""
-    global element, inventory
-    while mysteryconfontactions not in mysteryconfontfight:
-        print("You come across the door and use the key both ways, finally unlocking it./n As the door opens, you hear the mechanism inside the rock moving. /n You back away from the door, and a man quickly jumps in front of you, blocking the way to the contents inside.")
-        mysteryconfontactions = input()
-        if mysteryconfontactions == "attack":
-          if "sword" in inventory:
-            print("you defeat him\n you feel much more stronger now, perhaps its the watch doing it")
-            inventory.append("strong")
-            P3_dragonfound()
-          else:
-            print("With no weapon of your own, you are no match for the dragon.")
-            health -= 20
-          # insert next section
-          break
-        elif mysteryconfontactions == "convince":
-          if "lockpick" in inventory:
-            inventory.append("companion")
-            print("Using the combined power of both indivudals with watches you track down the alien\nyou barter your lockpick for the item he took from the hidden door that you tried solving before he interupted you")
-            inventory.append("glowing berries")
-            inventory.remove("lockpick")
-            P3_dragoncompanion()
-            break
-          else:
-            print("you dont have the items")
-            P3_barelydragon()
-            mysteryconfront()
-        elif mysteryconfontactions == "fire":
-          if element == "fire":
-            print(f"you defeat your opponent with the elemental knowledge of {element} and from that you encapsule him in a fire cacoon and defeat him, he turns to ashes and his belonging burn with him")
-            P3_dragonfound()
-          else:
-              print("You do not have the elemental knowledge of fire, try again?")
-              mysteryconfront()
-        else:
-            print("failed input for mystery confront returning")
-            mysteryconfront()
+            mysteryconfront():
 
 # check this code
 def P3_mysteryAmbush(): # need direction into other function
@@ -538,7 +497,7 @@ def P3_dragonfound():
     fightactions = ""
     global health, inventory
     while fightactions not in Directions:
-      if fightactions == "attack" inventory and "glowing berries" and "poisened" not in inventory:
+      if inventory == "glowing berries" and "poisened" not in inventory:
         health += 10 # missing exit function
       else:
         print("you try very hard to defeat the dragon, you barely make it out")
