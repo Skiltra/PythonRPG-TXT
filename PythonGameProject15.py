@@ -2,6 +2,7 @@
 from random import randint
 from os import system, name
 from time import sleep
+import os
 
 inventory = []
 element = []
@@ -18,8 +19,15 @@ def clear():
     # for mac and linux(here, os.name is 'posix')
     else:
         _ = system('clear')
-        
+
 def Main_Menu ():
+  global score
+  if os.path.exists("scorelog.txt"):
+    type = "a"
+  else:
+    type = "w"
+  with open("scorelog.txt", type) as file:
+    file.write(str(score))
   Choices = ["new Game", "exit", 1, 2]
   print("""
         
@@ -37,6 +45,7 @@ def Main_Menu ():
         """)
   gameoptions = ""
   while gameoptions not in Choices:
+    print(f"your previous score was {score}")
     print("1. new game.")
     print("2. exit.")
     gameoptions = input()
@@ -453,7 +462,7 @@ def P2_suprisemysteryman ():
   if mysteriousfigure == "ambushed by mysterious figure":
     print("He quickly flees scene clearly not wanting to engage in battle \n. You find a path leading to the clearing in the forest some puzzle to unlock a door")
     health -=10
-    print(health)
+    print(f"your health is {health})
     sleep(5)
     clear()
     Puzzle ()
@@ -678,6 +687,8 @@ def P3_windragon():
 # Ending Screens: someone make functions rename if needed but connect to other events if not
 def gameend():
   global score, health
+  with open("scorelog.txt", "w") as file:
+    file.write(str(score))
   if health >= 1:
     print(f"you completed the game with a score of {score} and your remaining health was {health}")
     print("""
