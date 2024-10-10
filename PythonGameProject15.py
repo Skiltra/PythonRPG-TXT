@@ -459,7 +459,7 @@ def P2_suprisemysteryman ():
   if mysteriousfigure == "ambushed by mysterious figure":
     print("He quickly flees scene clearly not wanting to engage in battle \n. You find a path leading to the clearing in the forest some puzzle to unlock a door")
     health -=10
-    print(f"your health is {health})
+    print("your health is" + str(health))
     sleep(5)
     clear()
     Puzzle ()
