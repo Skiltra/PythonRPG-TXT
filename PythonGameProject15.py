@@ -209,7 +209,7 @@ def Part_1_The_Bandit_Camp ():
       clear()
       Part_1_Dragon_Attack ()
     elif banditachoice == "attack bandits":
-      print("You decide to fight the bandits and are wounded. After being taken prisioner, they then try to use you as bait the defeat the dragon. \n The dragon kills them off and you run.")
+      print("You decide to fight the bandits and are wounded. After being taken prisoner, they then try to use you as bait the defeat the dragon. \n The dragon kills them off and you run.")
       sleep(5)
       clear()
       Part_1_Dragon_Attack ()
@@ -225,10 +225,10 @@ def Part_1_Dragon_Attack ():
     Dragonattackpath = ["worked with bandits", "attacked bandits", "spied on bandits and travelled to goblin camp.", "spied on bandits and travelled to obsidan mine"]
     dragonaction = ""
     while dragonaction not in Dragonattackpath:
-        print("You see a Drgaon waiting to attack you, Please type whether you: \n - worked with Bandits \n - attacked Bandits \n - spied on bandits and travelled to obsidan mine \n - spied on bandits and travelled to goblin camp")
+        print("You see a Dragon waiting to attack you, Please type whether you: \n - worked with Bandits \n - attacked Bandits \n - spied on bandits and travelled to Obsidan mine \n - spied on bandits and travelled to goblin camp")
         dragonaction = input()
         if dragonaction == "worked with bandits":
-            print("The dragon closes in on attack.\n With the power of water you succeed in dragon fight get for this dragon evaaporates and has to flee.")
+            print("The dragon closes in on attack.\n With the power of water you succeed in dragon fight get for this dragon evaporates and has to flee.")
             sleep(5)
             clear()
             Part_2_Chasing_Asilant ()
@@ -251,7 +251,7 @@ def Part_1_Dragon_Attack ():
             print("Please enter a valid option for the adventure game.")
             
 def Part_2_Chasing_Asilant ():
-    print("The player changes into a new time periodas the watch was glowing now and it opened a new path for him towards an office.\n. As you eneter the office there is a note that talks about a ritual to beat the dragon\nBefore you can move any further a Man appears who then teleports away when you see him.\nYou chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done\nThe enemey assilant tells him to stop, you do not know what you are dealing wiyj. Then he shifts away into another dimension")
+    print("The player changes into a new time periodas the watch was glowing now and it opened a new path for him towards an office.\n As you eneter the office there is a note that talks about a ritual to beat the dragon\n Before you can move any further a Man appears who then teleports away when you see him.\nYou chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done\n The enemey assilant tells him to stop, you do not know what you are dealing with, Then he shifts away into another dimension")
     sleep(10)
     clear()
     part2b ()
@@ -422,12 +422,10 @@ def backroom():
 
 def office():
   global score
-  print("")
-  print("With the two unconscious men at your feet, you face a decision: Do you take a moment to look around for more clues, or do you leave quickly? ")
+  print("\nWith the two unconscious men at your feet, you face a decision: Do you take a moment to look around for more clues, or do you leave quickly? ")
   key_or_not = input("Do you look around? ").lower()
   if key_or_not in ["yes", "y"]:
-    print("")
-    print("You look around, but find nothing of note. Rummaging through the pockets of the two incapacitated men, you discover two keys. One must be for the office. \n Without hesitation, you head in that direction. \n You unlock the office door and find it completely empty, except for a mysterious box. Using the second key you found, you open it. \n Inside, you discover a map that appears to chart all the paths your watch can travel through time. Every twist and turn laid out, waiting for you to explore")
+    print("\nYou look around, but find nothing of note. Rummaging through the pockets of the two incapacitated men, you discover two keys. One must be for the office. \n Without hesitation, you head in that direction. \n You unlock the office door and find it completely empty, except for a mysterious box. Using the second key you found, you open it. \n Inside, you discover a map that appears to chart all the paths your watch can travel through time. Every twist and turn laid out, waiting for you to explore")
     score += 20
     sleep(5)
     clear()
@@ -442,8 +440,7 @@ def office():
 
 def south_cargo():
   global score
-  print("")
-  print("You stumble around for hours, clearly lost. Every corner looks the same, and the weight of confusion settles in. \n Eventually, you find an office near the docks. Inside, you discover stacks of papers. \n You read them—they seem to outline a timeline for some sort of master plan, mapping out events both past and future. \n This timeline might hold the key to your next move.")
+  print("\nYou stumble around for hours, clearly lost. Every corner looks the same, and the weight of confusion settles in. \n Eventually, you find an office near the docks. Inside, you discover stacks of papers. \n You read them—they seem to outline a timeline for some sort of master plan, mapping out events both past and future. \n This timeline might hold the key to your next move.")
   score -= 10
   sleep(5)
   clear()
@@ -498,7 +495,7 @@ def Puzzle ():
       gameend()
       break
     elif Earthinput == "wind" and Waterinput == "earth" and Fireinput == "water" and Windinput =="fire":
-      print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle \n Watch Upgrades \n With this the player senses several locations to head to")
+      print("Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle \n Watch Upgrades \n with this the player senses several locations to head to")
       sleep(5)
       clear()
       directions_List ()
