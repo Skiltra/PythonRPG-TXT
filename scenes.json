@@ -7,16 +7,14 @@
     },
     {
       "id": 1,
-      "text": "Your Options are \n1: new game\n2: load game\n3: exit",
+      "text": "Your Options are: \n1: new game\n2: load game\n3: exit",
       "nextID": "characterBackground",
       "nextFalse": "// this is for replacing nextID in future post testing, if exit get teh exit function"
     }
-
   ],
   "characterBackround": [
       {
         "id": 0,
-        "type": "choice",
         "text": "What Element was you born under. 1. earth\n 2. water \n 3. fire \n 4. wind",
         "nextID": 1,
         "action": "inputHandler('choices', ['earth', 'water', 'fire', ''wind]), self.variable = player.element"

@@ -8,23 +8,26 @@ gameState = True
 
 class dialogueManager:
     def __init__(self):
-      self.activeScene = None
+      self.activeScene = None # assigning strings
       self.id = None
       self.nextID = None
       self.text = []
 
     def getDialogue(self,jsonheading, jsonIncrement=0):
-      print("check if text exist in JSONheading using default increment0")
+      self.id = jsonIncrement
+      self.activeScene = self.getJSON(jsonheading, self.id)
       while self.activeScene:
-          print("read actions, from activeScene")
-          print("from JSONheading, find next ID and assign")
           print(self.text)
-          self.id = None
+          jsonIncrement += 1
+      self.id = None
 
-    def getJSON(self):
-        self.activeScene = self.getJSON() # JSON retrieval for getDialogue formatting
-        with open("scenes.json") as f:
-          print("assign self.text")
+    def getJSON(self, menu, tarid):
+        with open("scenes.json", "r") as file:
+          data = json.load(file)
+          self.text = data["menu"] # this string is reference to what file in json
+          print(data)
+          sleep(5)
+          return id # TODO: not full done
 
 class inputSystem:
     def _init_(self):
@@ -50,7 +53,7 @@ class inputSystem:
     def advancedType(self):
        print("TODO: NEED TO MAKE IT ALLOW FOR COMPARING EXISTENCE OF SEPERATE WORD THAT EXIST IN THE STRING 'jim went to the store' and user input 'jim store' so i need to write logic where this is true as its false because of python logic")
 
-class player:
+class Player:
   def __init__(self):
      self.inventory = []
      self.element = None
@@ -85,10 +88,8 @@ def Main_Menu():
 |____/|_|_| |_| |_|\___|_| |_|___/_|\___/|_| |_|___/                       
 
         """)
-
-def Character_Choice ():
-    scenes.getDialogue("menu")
-    gameend()
+  scenes.getDialogue("menu")
+  gameend()
 ############################ Loop and Exit Functions ############################
 def gameend():
   with open("scorelog.txt", "w") as file:
@@ -114,7 +115,7 @@ def Game_Exit ():
 if __name__ == "__main__":
   while gameState:
     print(" \n Welcome to the Adventure Game!")
-    player = player()
+    player = Player()
     scenes = dialogueManager()
     choice = inputSystem()
     Main_Menu()

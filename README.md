@@ -34,12 +34,12 @@ other important attributes in json are:
 in order it is as written in scenes.json id>type>text>nextID>action
 
 ## 2 inputHandler
->[!note] Details if inputSystem Class
+>[!NOTE] Details if inputSystem Class
 >This is from the usage of input assigned to variables but putting it into a single function to extend ontop of the built-in `input()`
 
 ## 3 Locations
 Previsouly the idea was to use a x and y coordinate about 30x30 'pixels' to mimic location. this was not a nessery component though
->[!important] Future Development
+>[!IMPORTANT] Future Development
 >1.  Could be done through the player class as the simplest solutions 
 >2. as its non essentially this may or may not be complete
 
