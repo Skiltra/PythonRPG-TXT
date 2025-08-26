@@ -1,7 +1,5 @@
 from random import randint
-from os import system, name
 from time import sleep
-import sys
 import json
 
 gameState = True
@@ -14,20 +12,22 @@ class dialogueManager:
       self.text = []
 
     def getDialogue(self,jsonheading, jsonIncrement=0):
+      self.activeScene = jsonheading
       self.id = jsonIncrement
-      self.activeScene = self.getJSON(jsonheading, self.id)
+      self.text = self.getJSON(jsonheading, self.id)
       while self.activeScene:
-          print(self.text)
-          jsonIncrement += 1
-      self.id = None
+          if self.text != None:
+            print(f"JSON TEXT is: {self.text} and ACTIVE SCENE: {self.activeScene}")
+            sleep(5)
+          for scene in self.text:
+             if jsonIncrement == self.id:
+                return scene             
 
-    def getJSON(self, menu, tarid):
+    def getJSON(self, menu, tarid): # tarid is suppose to filter sepcific text where it currently doesnt
+        print(f"ID Set to {self.id}")
         with open("scenes.json", "r") as file:
           data = json.load(file)
-          self.text = data["menu"] # this string is reference to what file in json
-          print(data)
-          sleep(5)
-          return id # TODO: not full done
+          return data[menu]
 
 class inputSystem:
     def _init_(self):
@@ -57,7 +57,7 @@ class Player:
   def __init__(self):
      self.inventory = []
      self.element = None
-     self.money = 1
+     self.health = 100
      self.morality = 5.0
      self.score = 0
      self.conditions = []
@@ -88,8 +88,7 @@ def Main_Menu():
 |____/|_|_| |_| |_|\___|_| |_|___/_|\___/|_| |_|___/                       
 
         """)
-  scenes.getDialogue("menu")
-  gameend()
+
 ############################ Loop and Exit Functions ############################
 def gameend():
   with open("scorelog.txt", "w") as file:
@@ -110,12 +109,13 @@ def gameend():
 def Game_Exit ():
   choice = input('Press Q to Quit')
   if choice == 'q':
-    sys.exit(0)
+    gameState = False
 
 if __name__ == "__main__":
   while gameState:
-    print(" \n Welcome to the Adventure Game!")
+    print(" \n Initialized Game States")
     player = Player()
     scenes = dialogueManager()
     choice = inputSystem()
     Main_Menu()
+    scenes.getDialogue("gameIntro")

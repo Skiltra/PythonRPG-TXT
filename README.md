@@ -1,10 +1,11 @@
 # TODO
-- [ ] NPC Speaks to Player by Name
-- [ ] Have a scene manager; handles the control of the loop so the last one closes as a new one opens. detects xpos, ypos
-- [ ] New Inventory System
-- [ ] Check `eval()` relating to passing arguments into python from json conditions and making executions
-- [ ] Work on `dialogueManager` display side
+- [ ] Work on `dialogueManager()` display & `getJSON()` parsing
 - [ ] JSON Scene Editor (nice to have)
+- [ ] New Toggle Based Inventory System
+
+**Consider**
+- [ ] Check `eval()` relating to passing arguments into python from json conditions and making executions
+- [ ] NPC Speaks to Player by Name
 
 # Overview
 **Scenes**: 20(story) + 2(base)
