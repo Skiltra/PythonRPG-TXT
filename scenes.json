@@ -40,12 +40,12 @@
   "gameIntro": [
     {
       "id": 0,
-      "text": "You suddenly appear on a dirt road, you are beyond the time you was before, you remember somethign about being in a hospital and now you are knowwhere, this place looks strange, perhaps even you are hallucinating but who knows for sure",
+      "text": "You suddenly appear on a dirt road, you are beyond the time you was before, you remember something about being in a hospital and now you are knowwhere, this place looks strange, perhaps even you are hallucinating but who knows for sure",
       "nextID": 1
     },
     {
       "id": 1,
-      "text": "As you turn around, you see a Waylayman, He asks you are you a merchant?",
+      "text": "As you turn around, you see a Waylayman, He asks you are you a Merchant?",
       "nextID": "inputHandler('choices', [yesID2,noID3)"
     },
     {

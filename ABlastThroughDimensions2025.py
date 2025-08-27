@@ -11,23 +11,23 @@ class dialogueManager:
       self.nextID = None
       self.text = []
 
-    def getDialogue(self,jsonheading, jsonIncrement=0):
+    def getDialogue(self,jsonheading, jsonIncrement=2):
       self.activeScene = jsonheading
       self.id = jsonIncrement
-      self.text = self.getJSON(jsonheading, self.id)
+      self.text = self.getJSON(jsonheading, self.id) 
       while self.activeScene:
           if self.text != None:
-            print(f"JSON TEXT is: {self.text} and ACTIVE SCENE: {self.activeScene}")
+            print(f"{self.text}")
             sleep(5)
-          for scene in self.text:
-             if jsonIncrement == self.id:
-                return scene             
 
-    def getJSON(self, menu, tarid): # tarid is suppose to filter sepcific text where it currently doesnt
-        print(f"ID Set to {self.id}")
+    def getJSON(self, menu, tarid):
+        print(f"ID Set to {self.id}, active Scene: {self.activeScene}")
         with open("scenes.json", "r") as file:
           data = json.load(file)
-          return data[menu]
+          self.text = data[menu]
+          for content in self.text:
+            if tarid == content["id"]:
+              return content["text"]
 
 class inputSystem:
     def _init_(self):
