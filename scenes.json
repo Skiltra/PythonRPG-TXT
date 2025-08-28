@@ -1,0 +1,729 @@
+{
+  "menu": [
+    {
+      "id": 0,
+      "text": "Welcome to A Blast Through Dimensions--",
+      "nextID": 1
+    },
+    {
+      "id": 1,
+      "text": "Your Options are: \n1: new game\n2: load game\n3: exit",
+      "nextID": "characterBackground",
+      "nextFalse": "// this is for replacing nextID in future post testing, if exit get teh exit function"
+    }
+  ],
+  "characterBackround": [
+      {
+        "id": 0,
+        "text": "What Element was you born under. 1. earth\n 2. water \n 3. fire \n 4. wind",
+        "nextID": 1,
+        "action": "inputHandler('choices', ['earth', 'water', 'fire', ''wind]), self.variable = player.element"
+      },
+      {
+        "id": 1,
+        "type": "story",
+        "text": "{player.element}: You are an {player.element} element. You have the ability to {getDetail from Player.element}",
+        "nextID": 2
+      },
+      {
+        "id": 2,
+        "text": "How old are you",
+        "nextID": 3,
+        "action": "player.age"
+      },
+      {
+        "id": 3,
+        "text": "You are {get player.age} old, your age will only effect some dialogue",
+        "nextID": "gameIntro"
+      }
+   ],
+  "gameIntro": [
+    {
+      "id": 0,
+      "text": "You suddenly appear on a dirt road, you are beyond the time you was before, you remember something about being in a hospital and now you are knowwhere, this place looks strange, perhaps even you are hallucinating but who knows for sure",
+      "nextID": 1
+    },
+    {
+      "id": 1,
+      "text": "As you turn around, you see a Waylayman, He asks you are you a Merchant?",
+      "nextID": "inputHandler('choices', [yesID2,noID3)"
+    },
+    {
+      "id": 2,
+      "conditions": "if self.variable == 2) // as in ID 2 an int type",
+      "text": "Maybe I can interest you in some of my goods.",
+      "nextID": 4
+    },
+    {
+      "id": 3,
+      "conditions": "if self.variable == 3",
+      "text": "Your missing and oppurtunity of your life time",
+      "nextID": 4
+    },
+    {
+      "id": 4,
+      "text": "It seems something is troubling you, can I help you?",
+      "nextID": 5,
+      "action": "inputHandler('type', list=['Can you please help me with directions?'])"
+    },
+    {
+      "id": 5,
+      "text": "the Waylayman speaks:'To the West there is a village, to your North there is a forest and to the East is a bandit camp.'",
+      "nextID": "inputHandler('choices', ['village', 'forest', 'bandit camp'])"
+    }
+  ],
+
+  "forest": [
+    {
+      "id": 0,
+      "text": "You arrive at the forest, as you do you see a Witch.",
+      "nextID": 1,
+      "action": "movePOS(1,3)"
+    },
+    {
+      "id": 1,
+      "text": "the witch walks up from her hut and asks, 'who might you be and why are you in my village' the young witch states",
+      "nextID": 2
+    },
+    {
+      "id": 2,
+      "text": "well hello {scenes.variable}, ive got a task for you which i will reward but you must do something for me first, im no warrior so i dont venture too deep into the forest but maybe you can, there a special herb i need in the west get taht for me and i will reward you",
+      "nextID": 3
+    },
+    {
+      "id": 3,
+      "text": "You venture deep and come across two plants next to each other ones is a herb and the other is a flower",
+      "nextID": 4,
+      "action": "inputHandler('type', ['hern', 'flower']), player.inventory('scenes.variable')"
+    },
+    {
+      "id": 4,
+      "text": "You sucessfully make it back to the witch, you give her the item and she begins to check it",
+      "nextID": "inputHandler('determine',[ID6,ID5])"
+    },
+    {
+      "id": 5,
+      "text": "she states 'This is not the correct plant. However if you go to the Obsidan, near the mountain then this will be disregarded' she pauses then 'there a better plant i want get  that and we are fine'",
+      "nextID": 7,
+      "action": "characters['witch']['relation'] -= 1"
+    },
+    {
+      "id": 6,
+      "text": "This is the one, as a reward I shall give you this antidote to cure poisons, 'feel free to visit any time for help' ",
+      "nextID": 7,
+      "action": "player.inventory('antidote'), characters['witch']['relation'] += 1"
+    },
+    {
+      "id": 7,
+      "text": "the witch gave you intruction about a mine that she would like you to optionally get, you decide to go that way",
+      "nextID": 8
+    },
+    {
+      "id": 8,
+      "text": "You sneak into the mine, you hear noises you managing to walk your way into the dark cave, and see a glowing flower, you pick it but you hear noises behind you on the way back",
+      "nextID": 9
+    },
+    {
+      "id": 9,
+      "text": "it appears goblins are in this abandoned mine and must now make you way out without them spotting you, or if you feel strong fight them",
+      "nextID": 10
+    },
+    {
+      "id": 10,
+      "text": "you decide to follow the tunnel going up, and finally you are on the top of the mountain, then you spot the dragon",
+      "nextID": "dragonsPeak"
+    }
+  ],
+
+  "village": [
+    {
+      "id": 0,
+      "conditions": "if scene.variable == 'village'" ,
+      "text": "You have arrived at the village",
+      "nextID": 1,
+      "action": "player.conditions.append('village') "
+    },
+    {
+      "id": 1,
+      "text": "You arrive at the village and you are greeted by an farmer. The farmer tells you about the Elders Hut and the Manor",
+      "nextID": 2
+    },
+
+    {
+      "id": 2,
+      "text": "He asks you to help them and explains the lord is trying to crush the farmers rebellion that has occured in the village due to tax increases",
+      "nextID": 3
+    },
+    {
+      "id": 3,
+      "text": "'please will you help us' he exclaims",
+      "nextID": "inputHandler('choice', [ID4, 'manor'])"
+    },
+    {
+      "id": 4,
+      "text": "you decide to help the farmers to fight the Lords Army.As you fight off the army, you are stopped by the peasants rebellion",
+      "nextID": "eldersHut",
+      "action": "rollCombat"
+    }
+  ],
+
+  "manor": [
+      {
+        "id": 0,
+        "text": "you are greeted by the local lord, having seen you pass by",
+        "nextID": 1
+      },
+      {
+        "id": 1,
+        "text": "the lord speaks, i see you didnt follow those peasants, her perhaps you can help they are rebelling, if you do it i can give you some gold, im very wealthy",
+        "nextID": 2
+      },
+      {
+        "id": 2,
+        "text": "you help him and decide to fight you march into the village along with some levies somewhat armed but not armored soldiers",
+        "nextID": 3,
+        "action": "rollCombat()"
+      },
+      {
+        "id": 3,
+        "text": "hey thank for helping here some gold, perhaps you can help with a dragon problem as well, i can send a few soldiers your way",
+        "nextID": "dragonsPeak"
+      }
+  ],
+
+  "eldersHut": [
+    {
+      "id": 0,
+      "type": "intro",
+      "text": "You arrive at the Elders hut, a man is speaking to peasant with rakes, the elder sees you",
+      "nextID": 1
+    },
+    {
+      "id": 1,
+      "type": "story",
+      "text": "He begins to speak 'hello stranger, who might you be on these lands'",
+      "nextID": 2,
+      "action": "inputHandler#playerTypeResponse"
+    },
+    {
+      "id": 2,
+      "type": "story",
+      "text": "Well hello {name}, its good to meet you i was in fact looking for a warrior type such as, after all i heard what you did for my village",
+      "nextID": 3,
+      "action": "inputHandler#playerTypeResponse'what do you need?'"
+    },
+    {
+      "id": 3,
+      "type": "story",
+      "text": "the elder speaks, 'well you see i need a specific herb, it has magical properties unfrotunetly neither of my servant here that tend my farm are brave enough, so i would ask you to go into the cave its along the path to the mountain",
+      "nextID":  4
+    },
+    {
+      "id": 4,
+      "type": "story",
+      "text": "you head up the path it gets narrow and more narrow as you get closer to the top, luckily you see the cave is close it looks like a mine, but its very narrow, the path also continues, What do you do?",
+      "nextID": 5,
+      "action": "inputHandler#choices"
+    },
+    {
+      "id": 5,
+      "type": "choice",
+      "text": "you decide to risk the jump",
+      "nextID": 6
+    },
+    {
+      "id": 6,
+      "type": "story",
+      "text": "you begin to make the leap, and you quickly move to the narrow gap",
+      "nextID": "obsidianMine",
+      "action": "rollStatsCheck" 
+    }
+  ],
+
+  "bandits": [
+    {
+      "id": 0,
+      "text": "//TODO: Incomplete tree //You are at the bandit camp, please type if you want to: 1. work with bandits  \n 2. attack bandits \n 3. spy on bandits",
+      "nextID": "inputHandler('choice', ['ID1Spy', 'ID3Attack'])"
+    },
+    {
+      "id": 1,
+      "text": "you decide to spy on the bandits",
+      "nextID": 2,
+      "action": "inputHandler"
+    },
+    {
+      "id": 2,
+      "text": " As you listen to the bandits conversation, they talk about the dragons weakness to water"
+    },
+    {
+      "id": 3,
+      "text": "You decide to fight the bandits {run wounded condition checks}, After being taken prisoner. they then try to use you as bait to defeat the dragon. The dragon ills them off and you run"
+    },
+    {
+      "id": 4,
+      "text": "You decide to spy on the bandits, and sneak into there camp. ",
+      "nextID": 5
+    },
+    {
+      "id": 5,
+      "text": "They talk about goblins over the river and about obsidian mine. \n As you explore you run into a dragon",
+      "nextID": "dragonsPeak"
+    }
+  ],
+  "dragonsPeak": [
+    {
+      "id": 0,
+      "text": "a dragon flies down and begins to attack",
+      "nextID": "inputHandler('determine', ['ID1', 'ID2','ID3','ID4'])",
+      "action": "rollCombat // needs to work on all conditions below"
+    },
+    {
+      "id": 1,
+      "conditions": "player.element == 'water'",
+      "text": "The dragon closes in on attack.\n With the power of water you succeed in the dragon fight, as it evaporates it has to flee",
+      "nextID": "C2chase"
+    },
+    {
+      "id": 2,
+      "conditions": "'banditConvoHeard' in conditions",
+      "text": "You spied on the bandits and visited the goblin camp to find out how to use water on the dragon. \n with the power of water you succeed in the dragon fight, get for this beating the dragon. the dragon evaraporates and has to flee.",
+      "action": "if Bandits heard conversation about weakness to water"
+    },
+    {
+      "id": 3,
+      "conditions": "if 'antidote' player.inventory",
+      "text": "You spied on the bandits and went straight to Obsidan Mine. \n when the dragon attacks you, you manage to scrape the dragon to make it bleed. The Dragon escapes.",
+      "action": "if witch antidote, you heal manage to heal"
+    },
+    {
+      "id": 4,
+      "text": "The dragon swoops in low to attack you \n. You are hurt by the oncoming dragon attack. You try to chase down the dragon"
+    }
+  ],
+  "C2chase": [
+    {
+      "id": 0,
+      "text": "\n The player changes into a new time period, as the watch was glowing now and it opened a new path for him towards an office.\n As you enter the office, there is a note that talks about a ritual to beat the dragon. \n Before you can move any further, a man appears, who starts running away from you.\n. You chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done. \n The enemey assilant tells you to stop, you do not know what you are dealing with, he says. Then he shifts away into another dimension \n",
+      "nextID": 1
+    },
+    {
+      "id": 1,
+      "text": "As you attempt to follow him using your watch, you see you are now at a shipyard. You can either go North or South, \n which way do you want to go. \n\n 1. south 2. north \n",
+      "nextID": "inputHandler('choice', [ID2, 'ID3'])"
+    },
+    {
+      "id": 2,
+      "text": "You head north \n You reach the cargo hold of the shipyard. You see great ships being loaded with crates. You hear voices coming from the right side of the reception area; they don't sound friendly.",
+      "nextID": "cargoMain"
+    },
+    {
+      "id": 3,
+      "text": "You go south and find nothing",
+      "nextID": 1
+    }
+  ],
+
+  "cargoMain": [
+    {
+      "id": 0,
+      "text": "a person walks by you decide to hide",
+      "nextID": "inputHandler('choice', ['ID1crates', 'ID2ship', 'ID3reception'])"
+    },
+    {
+      "id": 1,
+      "text": "You head towards the crates",
+      "nextID": 10
+    },
+    {
+      "id": 2,
+      "text": "You head towards the ship"
+    },
+    {
+      "id": 3,
+      "text": "You head towards the reception"
+    },
+    {
+      "id": 10,
+      "type": "choice",
+      "text": "You see two crates: one marked with a dragon symbol and the other unmarked. Which one do you hide in? \n\n 1. marked 2. unmarked",
+      "nextID": "inputHandler('choices', [ID11dragoncrate, ID12, ID13])"
+    },
+    {
+      "id": 11,
+      "text": "You go towards the crate marked with the dragon symbol",
+      "nextID": 20
+    },
+    {
+      "id": 12,
+      "text": "You go towards the unmarked crate",
+      "nextID": 13
+    },
+    {
+      "id": 13,
+      "text": "You enter the unmarked crate. \n The watch glows and transforms, seemingly upgraded in a way you instinctively recognise",
+      "nextID": "ship",
+      "action": "player.addInvetory('watchupgradeTime'), player.score += 10"
+    },
+    {
+      "id": 13,
+      "text": "You hide in the crate, listening as the voices grow fainter and fainter \n The watch glows and transforms, seemingly upgraded in a way you instinctively recognise."
+    },
+    {
+      "id": 20,
+      "text": "You go into the marked crate. Inside, you find bags upon bags of drugs. There’s a Chinese man who glares at you, his eyes narrowing. \n He doesn't seem pleased to see you. He shouts, 'What are you doing here?' His voice echoes through the crate, making you flinch.",
+      "nextID": 21, 
+      "action": "player.score -= 10"
+    },
+    {
+      "id": 21,
+      "text": "Do you try the other crate? \n\n 1. yes \n 2. no",
+      "nextID": "inputHandler('choices', [ID22, ID23]",
+      "action": "if no, player.score -=10 "
+    },
+    {
+      "id": 22,
+      "text": "You hastily leave the crate and found nothing",
+      "nextID": "inputHandler('determine', [ID21, ID23])"
+    },
+    {
+      "id": 23,
+      "text": "you go to the unmarked crate instead but have to move becausse you hear vocie so you flee through a door on the ship further in",
+      "nextID": "ship"
+    }
+  ],
+  "ship": [
+    {
+      "id": 0,
+      "type": "determine from executionfunc",
+      "text": "As you explore the ship, you stumble upon a stack of papers. Some are yellowed with rage",
+      "nextID": "1,2"
+    },
+    {
+      "id": 1,
+      "text" :"while others look as if they’re from a time yet to come. Among them, you find a drawing of your watch. \n Instantly, you feel your understanding of the watch deepen, as if the very sight of the picture unlocks hidden knowledge within you. \n What secrets could this watch be holding? \n The watch glows and transforms, seemingly upgraded in a way you instinctively recognise",
+      "nextID": 2,
+      "action": "if player.element == wind"
+    },
+    {
+      "id": 2,
+      "text": "Having no other option you sprint your way as they fire guns on you, you manage to escape their sight but now mmust find somewhere new to hide, ",
+      "nextID": 3
+    },
+    {
+      "id": 3,
+      "text": "Where do you hide, there a crate just randomly out and theres a small building with the lights on",
+      "nextID": "4, ",
+      "action": "inputHandler(variable='hiding')"
+    },
+    {
+      "id": 4,
+      "text": "You reach the reception area, finding it deserted. The reception desk is empty. \n Do you take a moment to look around before venturing into the backroom?",
+      "nextID": 5,
+      "action": "inputHandler(if yes then 6)"
+    },
+    {
+      "id": 5,
+      "text":  "you choose to not look around",
+      "nextID": "backroom"
+    },
+    {
+      "id": 6,
+      "text": "You scan the reception area and spot a revolver lying on a table. The weight of the situation hits you as you pick it up.  \n A door labelled 'Head Office' is locked, but the backroom is unlocked",
+      "nextID": "backroom",
+      "action": "player.inventory('revolver')"
+    }
+
+  ],
+  "backroom": [
+    {
+      "id": 0,
+      "text": "You enter the backroom and immediately spot two men. Their expressions harden as they recognize you. They advance, clearly in league with the man who attacked you earlier",
+      "nextID": "determine from conditions, [1, revolver][2, none]"
+    },
+    {
+      "id": 1,
+      "text": "Quickly, you take out your revolver and aim at one of the men. You shoot, and he falls to the ground. \n The other man is momentarily stunned but then advances. Before he can take out his own gun, you shoot him as well. \n You are stunned at your own reflexes; shooting those men seemed second nature...",
+      "nextID": 3
+    },
+    {
+      "id": 2,
+      "text": "With no weapon of your own, one of the two men takes out his gun and shoots you. Your watch glows, distracting the men, and you flee. \n You decide to hide in a nearby crate and promptly pass out \n You wake up groggy. Hours must have passed. You go back into the backroom and the room looks different. \n Notes that weren't there before are now scattered on the table. You read them—they seem to outline a timeline",
+      "nextID": "mysteryMan",
+      "action": "player.score -= 10 player.health -= 50"
+    },
+    {
+      "id": 3,
+      "text": "after successfully shooting the two men you make it too an office in a hurry",
+      "nextID": 4
+    },
+    {
+      "id": 4,
+      "text": "With the two unconscious men at your feet, you face a decision: Do you take a moment to look around for more clues, or do you leave quickly?",
+      "nextID": 5,
+      "action": "inputHandler(if action == yes: give items )"
+    },
+    {
+      "id": 5,
+      "text": "You unlock the office door and find it completely empty, except for a mysterious box, you discover a map that appears to chart all the paths your watch can travel through time. Every twist and turn laid out, waiting for you to explore",
+      "nextID": "mysteryMan", 
+      "action": "player.watchUpgrade('map'); player.score +=10"
+    }
+    ],
+
+  "mysteryMan": [
+      {
+        "id": 0,
+        "text": "You arrive at the location and see a Mysterious Figure, he begins to leap forward from a portal and attacks you",
+        "nextID": 1
+      },
+      {
+        "id": 1,
+        "text": "You prepare to attack back to see what you have",
+        "nextID": "2, 3",
+        "action": "rollCombat(), inputHandler('variable', [2fail,3])"
+      },
+      {
+        "id": 2,
+        "type": "outcome",
+        "text": "He launches an attack, to damage you. Then he quickly flees scene clearly not wanting to engage in battle \n. You find a path leading to the clearing in the forest some puzzle to unlock a door",
+        "nextID": "puzzle",
+        "action": "player.health -= 10;"
+      },
+      {
+        "id": 3,
+        "condition": "if inputHandler(variable='determine', 'fail')",
+        "text": "You attempt to launch an attack on him, but he flees before you can. You follow a blood trail of a stone alligned in the forest patch and puzzle",
+        "nextID": "puzzle",
+        "action": "player.score += 10"
+      }
+    ],
+
+  "puzzle": [
+      {
+        "id": 0,
+        "condition": "await",
+        "text": "you arrive to see a stone which say 'It asks you to align the stone based on what elements oppose, based on the following statements. A series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element', which stone do you read, 1, 2, 3 or 4",
+        "nextID": 1
+      },
+      {
+        "id": 1,
+        "text": "Your Choice to Read are, 1. Earth 2. Water 3. Fire 4. Wind",
+        "nextID": "inputHandler[variable=2,3,4,5]"
+      },
+      {
+        "id": 2,
+        "condition": "if variable == 1 else increment=6",
+        "text": "Earth is strong against water, but is weak against which element?",
+        "nextID": "inputHandler(condition[earth], 'water'), increment=7"
+      },
+      {
+        "id": 3,
+        "condition": "if variable == 2 else increment=6",
+        "text": "Water is strong against Fire, but is weak against which element??",
+        "nextID": 7,
+        "action": "inputHandler('variable=water, 'wind')"
+      },
+      {
+        "id": 4,
+        "condition": "if variable == 3 else increment=6",
+        "text": "Fire is strong against wind, but is weak against which element??",
+        "nextID": 7
+      },
+      {
+        "id": 5,
+        "condition": "if variable == 4 else increment=6",
+        "text": "Wind is strong against Earth, but is weak against which element?? ",
+        "nextID": 7
+      },
+      {
+        "id": 6,
+        "text": "You got this wrong, You fail and a result you die after being attacked by all elements",
+        "nextID": 0,
+        "action": "player.score -=20"
+      },
+      {
+        "id": 7,
+        "text": "You succeed at this element",
+        "nextID": "inputHandler(conditions['elements'], increment=8)",
+        "action": "player.score +=5"
+      },
+      {
+        "id": 8,
+        "text": "Player succeeds rock moves and the player discovers a locked door but the player has additional abilities since completing the puzzle \n Watch Upgrades \n with this the player senses several locations to head to",
+        "nextID": "directions",
+        "action": "player.watch['upgrade2']"
+      }
+    ],
+  "directions": [
+      {
+        "id": 0,
+        "text": "using the new watch upgrade you teleport somewhere medieval you are on a path you can go east or west, going west over the bridge or going east down a long path, type bridge or otherwise west",
+        "nextID": "inputHandler('choices')",
+        "action": "inputHandler(variable=part2locations, ['bridgeID1', 'westID4'])"
+      },
+      {
+        "id": 1,
+        "conditions": "inputHandler(variable) == bridge",
+        "text": "You reach a bridge",
+        "nextID": 2
+      },
+      {
+        "id": 2, 
+        "text": "coming upto the bridge you realize this bridge is weak and rigedy, do you continue",
+        "nextID": "inputHandler('confirm', [True=3, False=0])"
+      },
+      {
+        "id": 3,
+        "text": "you cross the bridge and it collapases dropping you into the river getting swept up in it's current. \n You wash up on a beach a your watch starts to glow, you notice a object letting of the same glow and pick it up.",
+        "nextID": "cabin",
+        "action": "player.inventory('lockpick')"
+      },
+      {
+        "id": 4,
+        "text": "You reach a cave entrace and find yourself standing at the entrance of a dark ominous cave",
+        "nextID": 5
+      },
+      {
+        "id": 5,
+        "text": "You enter the cave and sense a time object nearby. \n You go in the direction you sense the time object. \n It's a sword it seems to glow when near the watch, you pick it up",
+        "nextID": "mysteryConfront",
+        "action": "player.inventory('sword')"
+      }
+    ],
+  "cabin": [
+      {
+        "id": 0,
+        "text": "you arrive at a cabin after falling down the flow of the river, you sense the presence of another key to upgrade the watch, figuring it must be in the cabin you enter",
+        "nextID": 1
+      },
+      {
+        "id": 1,
+        "text": "You find a key you figure this magical key must lead to something as you pick it up you teleport",
+        "nextID": "mysteryConfront",
+        "action": "player.inventory('key')"
+      }
+    ],
+
+  "mysteryConfront": [
+      {
+        "id": 0,
+        "text": "\n You come across the door and use the key both ways, finally unlocking it. \n As the door opens, you hear the mechanism inside the rock moving. \n You back away from the door, and a man quickly jumps in front of you, blocking the way to the contents inside. \n what do you decide to do: \n\n 1. convince \n 2. attack \n 3. fire \n",
+        "nextID": "inputHandler('determine',[ID1,ID2]) //determine from conditions file"
+      },
+      {
+        "id": 1,
+        "conditions": "if sword is in player.inventory",
+        "text": "you defeat him \n you feel much more stronger now, perhaps its the watch doing it \n",
+        "nextID": 3,
+        "action": "player.inventory('strong')"
+      },
+      {
+        "id": 2,
+        "text": "With no weapon of your own, you are no match for the for him but he leave you",
+        "nextID": 3,
+        "action": "player.health -=20"
+      },
+      {
+        "id": 3,
+        "text": "some alien seem to greet you, it seem to want something, you cannot communicate but it clearly wants something and has not attacked you, you look to see what you have",
+        "nextID": "inputHandler('determine',[ID4,ID5]"
+      },
+      {
+        "id": 4,
+        "conditions": "if lockpick is in player.inventory",
+        "text": "you figure maybe the magically lockpick is what it wants, it seem to accept it and follows you to what looks like your only path is througha  dragon pit",
+        "nextID": "dragonFound",
+        "action": "player.inventory('companion'), player.inventory('glowing berries', player.remove('lockpick))"
+      },
+      {
+        "id": 5,
+        "text": "you do not have anything to barter and it seem to disppear you are confronted with a uneasy truth your only way forward is intoa  dragons pit, likely the one you faced earlier",
+        "nextID": "dragonFound"
+      }
+    ],
+  "dragonFound": [
+      {
+        "id": 0,
+        "text": "you reach the pit with moutnains surrounding you on a large plain around it, but a man get in your way and begin to attack clearly wanting to fight the dragon for some reason",
+        "nextID": "inputHandler('determine', [ID1,ID2,ID3])"
+      },
+      {
+        "id": 1,
+        "conditions": "player.health <= 80",
+        "text": "you **barely** make it",
+        "nextID": 4
+      },
+      {
+        "id": 2,
+        "conditions": "if 'companion' in player.inventory",
+        "text": "with the help of your **companion** you do fine at repelling the guy",
+        "nextID": "dragonFight"
+      },
+      {
+        "id": 3,
+        "conditions": "if player.element == 'fire'",
+        "text": "you defeat the dragon with the elemental knowledge of {element} and from that you encapsule it in a fire cacoon and defeat it.",
+        "nextID": "dragonFight",
+        "actions": "player.inventory('dragonash')"
+      },
+      {
+        "id": 4,
+        "text": "you are poisened",
+        "nextID": "inputHandler('determine', [ID5,ID6])"
+      },
+      {
+        "id": 5,
+        "conditions": "if 'antidote' in player.inventory",
+        "text": "He amanged to slice you wiht his sword and poisens you luckily you use your antidote and you defeat him",
+        "nextID": "dragonFight",
+        "actions": "player.remove('antidote')"
+      },
+      {
+        "id": 6,
+        "text": "you are poisended but fortunately you defeat him, although you still are dealt damage",
+        "nextID": "dragonFight",
+        "actions": "player.health -= 20"
+      }
+    ],
+  "dragonFight": [
+      {
+        "id": 0,
+        "text": "the dragon awoke from teh nosie form the fithgt with the random adventurer or profiteer",
+        "nextID": "inputHandler('determine', [ID1,ID2])"
+      },
+      {
+        "id": 1, 
+        "conditions": "if player.health <= 60",
+        "text": "you try very hard to defeat the dragon, you barely make it out.",
+        "action": "player.health -= 20"
+      },
+      {
+        "id": 2,
+        "conditions": "'companion' in player.inventory",
+        "text": "unfortunely your alien friend fight the dragon as you flank but your aline freidn evaporate but you manage to take the dragon our",
+        "nextID": "endGame",
+        "actions": "player.score +=40, player.remove('companion'), player.inventory('corrupted')"
+      }
+    ],
+
+  "endGame": [
+      {
+        "id": 0,
+        "text": "End of Story",
+        "nextID": "inputHandler('determine', [ID1, ID2])"
+      },
+      {
+        "id": 1,
+        "conditions": "if player.health > 1",
+        "text": "\n you completed the game with a score of {player.score} and your remaining health was {player.health} \n well done :)\n"
+      },
+      {
+        "id": 2,
+        "conditions": "if player.health <=1",
+        "text": "you lost",
+        "action": "gameEnd()"
+      }
+    ]
+}
+
