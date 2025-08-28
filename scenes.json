@@ -57,7 +57,7 @@
     {
       "id": 3,
       "conditions": "if self.variable == 3",
-      "text": "your missing and oppurtunity of your life time",
+      "text": "Your missing and oppurtunity of your life time",
       "nextID": 4
     },
     {

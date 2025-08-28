@@ -1,5 +1,5 @@
 # TODO
-- [ ] Work on `dialogueManager()` display & `getJSON()` parsing
+- [x] Work on `dialogueManager()` display & `getJSON()` parsing
 - [ ] JSON Scene Editor (nice to have)
 - [ ] New Toggle Based Inventory System
 
@@ -12,7 +12,7 @@
 
 This is the second version from the first file using the same general plot, but making it more scalable which the other file from *Oct 2024*. isnt. This is mostly a personal project to make it more efficient which isnt suppose to be impressive.
 
-The main improvement to the new version is, it has classes with functions which actually achieve some of the ideas we had planning, 
+The main improvement to the new version is, it has classes with functions which actually achieve some of the ideas we had planning.
 
 **Old Overview** <br>
 Based on a small team prototyping some ideas, as a compromise we implementing all version of the plot through the idea of it being "time travel" through time hence the titles used for it is known as:
