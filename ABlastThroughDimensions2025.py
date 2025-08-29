@@ -10,6 +10,7 @@ class dialogueManager:
       self.id = None
       self.nextID = 1
       self.text = []
+      self.action = None
 
     def getDialogue(self,jsonheading, jsonIncrement=0):
       self.activeScene = jsonheading
@@ -23,19 +24,24 @@ class dialogueManager:
             self.text = self.getJSON(self.activeScene, self.nextID)
             self.id = self.nextID
             self.nextID +=1
-            print(f"ID {self.id} and next {self.nextID}")
+            print(f">displaying test and adjusting IDs")
+          elif isinstance(self.nextID, str): # TODO: implement scenes via text
+             self.activeScene = self.nextID
           else:
-             print("scene fallback")
+             print("SCENE FALLBACK; fuction couldnt adjust ID's or text already is something")
 
     def getJSON(self, menu, tarid):
-        print(f"ID Set to {self.id} next is {self.nextID}, active Scene: {self.activeScene}")
+        print(f">ID Set at {self.id} nextIs {self.nextID}, activeScene: {self.activeScene}")
+        if self.nextID == 40: # TEMP DEBUG CODE UNTIL ISSUE FIXED
+           self.activeScene = False
         with open("scenes.json", "r") as file:
-          data = json.load(file) # loads file
-          self.text = data[menu] #filter the json array
+          data = json.load(file) 
+          self.text = data[menu] # Filters JSON by array contents
+          print(f"DEBUG CODE REMOVE: action set {self.action}")
           for content in self.text:
               if tarid == content["id"]:
+                self.text = data.get("nextID", 1) # FIXME : get nextID rather than incrementing from ID, infinte loop useful for debug but not ideal
                 return content["text"]
-
 
 class inputSystem:
     def _init_(self):
@@ -62,8 +68,6 @@ class inputSystem:
            print("pause getDialogue;player types to varibale, options are assigned to self.option, self. variable is compared against self.options continue getDialogue chain")
            if self.userInput in input.advancedType():
               scenes.getDialogue("continue, and unpause getDialogue")
-    def advancedType(self):
-       print("TODO: NEED TO MAKE IT ALLOW FOR COMPARING EXISTENCE OF SEPERATE WORD THAT EXIST IN THE STRING 'jim went to the store' and user input 'jim store' so i need to write logic where this is true as its false because of python logic")
 
 class Player:
   def __init__(self):
@@ -126,8 +130,8 @@ def Game_Exit ():
 if __name__ == "__main__":
   while gameState:
     print(" \n Initialized Game States")
-    player = Player()
     scenes = dialogueManager()
+    player = Player()
     input = inputSystem()
     Main_Menu()
-    scenes.getDialogue("gameIntro")
+    scenes.getDialogue("menu")
