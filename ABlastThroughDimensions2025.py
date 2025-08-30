@@ -22,26 +22,25 @@ class dialogueManager:
             sleep(5)
           if self.nextID > self.id:
             self.text = self.getJSON(self.activeScene, self.nextID)
-            self.id = self.nextID
-            self.nextID +=1
             print(f">displaying test and adjusting IDs")
-          elif isinstance(self.nextID, str): # TODO: implement scenes via text
+          elif isinstance(self.nextID, str): # TODO: DOES NOT WORK STILL implement scenes via text
              self.activeScene = self.nextID
           else:
-             print("SCENE FALLBACK; fuction couldnt adjust ID's or text already is something")
+             print(f"SCENE FALLBACK; function couldnt adjust ID's or text already is something; id {self.id} nextID {self.nextID}")
 
     def getJSON(self, menu, tarid):
         print(f">ID Set at {self.id} nextIs {self.nextID}, activeScene: {self.activeScene}")
-        if self.nextID == 40: # TEMP DEBUG CODE UNTIL ISSUE FIXED
+        if self.text == None: # A method to end loop and reintialize
            self.activeScene = False
         with open("scenes.json", "r") as file:
           data = json.load(file) 
           self.text = data[menu] # Filters JSON by array contents
-          print(f"DEBUG CODE REMOVE: action set {self.action}")
           for content in self.text:
+              purpose = content.get("nextID")
               if tarid == content["id"]:
-                self.text = data.get("nextID", 1) # FIXME : get nextID rather than incrementing from ID, infinte loop useful for debug but not ideal
                 return content["text"]
+              if isinstance(purpose, str):
+                 self.activeScene = purpose
 
 class inputSystem:
     def _init_(self):
@@ -134,4 +133,4 @@ if __name__ == "__main__":
     player = Player()
     input = inputSystem()
     Main_Menu()
-    scenes.getDialogue("menu")
+    scenes.getDialogue("mysteryMan")

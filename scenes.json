@@ -9,7 +9,7 @@
       "id": 1,
       "text": "Your Options are: \n1: new game\n2: load game\n3: exit",
       "nextID": "characterBackground",
-      "nextFalse": "// this is for replacing nextID in future post testing, if exit get teh exit function"
+      "nextFalse": "// this is for replacing nextID in future post testing, if exit get the exit function"
     }
   ],
   "characterBackround": [
@@ -194,46 +194,39 @@
   "eldersHut": [
     {
       "id": 0,
-      "type": "intro",
       "text": "You arrive at the Elders hut, a man is speaking to peasant with rakes, the elder sees you",
       "nextID": 1
     },
     {
       "id": 1,
-      "type": "story",
       "text": "He begins to speak 'hello stranger, who might you be on these lands'",
       "nextID": 2,
       "action": "inputHandler#playerTypeResponse"
     },
     {
       "id": 2,
-      "type": "story",
       "text": "Well hello {name}, its good to meet you i was in fact looking for a warrior type such as, after all i heard what you did for my village",
       "nextID": 3,
       "action": "inputHandler#playerTypeResponse'what do you need?'"
     },
     {
       "id": 3,
-      "type": "story",
       "text": "the elder speaks, 'well you see i need a specific herb, it has magical properties unfrotunetly neither of my servant here that tend my farm are brave enough, so i would ask you to go into the cave its along the path to the mountain",
       "nextID":  4
     },
     {
       "id": 4,
-      "type": "story",
       "text": "you head up the path it gets narrow and more narrow as you get closer to the top, luckily you see the cave is close it looks like a mine, but its very narrow, the path also continues, What do you do?",
       "nextID": 5,
       "action": "inputHandler#choices"
     },
     {
       "id": 5,
-      "type": "choice",
       "text": "you decide to risk the jump",
       "nextID": 6
     },
     {
       "id": 6,
-      "type": "story",
       "text": "you begin to make the leap, and you quickly move to the narrow gap",
       "nextID": "obsidianMine",
       "action": "rollStatsCheck" 
@@ -345,7 +338,6 @@
     },
     {
       "id": 10,
-      "type": "choice",
       "text": "You see two crates: one marked with a dragon symbol and the other unmarked. Which one do you hide in? \n\n 1. marked 2. unmarked",
       "nextID": "inputHandler('choices', [ID11dragoncrate, ID12, ID13])"
     },
@@ -395,7 +387,7 @@
   "ship": [
     {
       "id": 0,
-      "type": "determine from executionfunc",
+      "conditions": "determine from executionfunc // this is an old version doesnt need to do this follow the standard developed",
       "text": "As you explore the ship, you stumble upon a stack of papers. Some are yellowed with rage",
       "nextID": "1,2"
     },
@@ -480,19 +472,18 @@
       {
         "id": 1,
         "text": "You prepare to attack back to see what you have",
-        "nextID": "2, 3",
+        "nextID": "2",
         "action": "rollCombat(), inputHandler('variable', [2fail,3])"
       },
       {
         "id": 2,
-        "type": "outcome",
         "text": "He launches an attack, to damage you. Then he quickly flees scene clearly not wanting to engage in battle \n. You find a path leading to the clearing in the forest some puzzle to unlock a door",
         "nextID": "puzzle",
         "action": "player.health -= 10;"
       },
       {
         "id": 3,
-        "condition": "if inputHandler(variable='determine', 'fail')",
+        "conditions": "if inputHandler(variable='determine', 'fail')",
         "text": "You attempt to launch an attack on him, but he flees before you can. You follow a blood trail of a stone alligned in the forest patch and puzzle",
         "nextID": "puzzle",
         "action": "player.score += 10"
@@ -502,8 +493,8 @@
   "puzzle": [
       {
         "id": 0,
-        "condition": "await",
-        "text": "you arrive to see a stone which say 'It asks you to align the stone based on what elements oppose, based on the following statements. A series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element', which stone do you read, 1, 2, 3 or 4",
+        "conditions": "await",
+        "text": "You arrive to see a stone which say 'It asks you to align the stone based on what elements oppose, based on the following statements. A series of 3 phrases for each stone mural, a description of element, its opposed element and it's paired element', which stone do you read, 1, 2, 3 or 4",
         "nextID": 1
       },
       {
@@ -513,26 +504,26 @@
       },
       {
         "id": 2,
-        "condition": "if variable == 1 else increment=6",
+        "conditions": "if variable == 1 else increment=6",
         "text": "Earth is strong against water, but is weak against which element?",
         "nextID": "inputHandler(condition[earth], 'water'), increment=7"
       },
       {
         "id": 3,
-        "condition": "if variable == 2 else increment=6",
+        "conditions": "if variable == 2 else increment=6",
         "text": "Water is strong against Fire, but is weak against which element??",
         "nextID": 7,
         "action": "inputHandler('variable=water, 'wind')"
       },
       {
         "id": 4,
-        "condition": "if variable == 3 else increment=6",
+        "conditions": "if variable == 3 else increment=6",
         "text": "Fire is strong against wind, but is weak against which element??",
         "nextID": 7
       },
       {
         "id": 5,
-        "condition": "if variable == 4 else increment=6",
+        "conditions": "if variable == 4 else increment=6",
         "text": "Wind is strong against Earth, but is weak against which element?? ",
         "nextID": 7
       },
