@@ -17,12 +17,12 @@ class dialogueManager:
       self.activeScene = jsonheading
       self.id = jsonIncrement
       self.text = self.getJSON(jsonheading, self.id) 
-      if type(self.nextID) is str:
+      if type(self.nextID) is str: 
             self.activeScene = self.nextID
             self.text = self.getJSON(self.activeScene, self.nextID)
       while self.activeScene:
           if self.text != None and type(self.nextID) is int:
-            print(f"{self.text}")
+            print(f"{self.text}") #TODO: fix printing of entire JSON file
             sleep(5)
             if self.nextID > self.id:
               self.text = self.getJSON(self.activeScene, self.nextID)
@@ -39,8 +39,8 @@ class dialogueManager:
           data = json.load(file) 
           self.text = data[menu]
           for content in self.text:
-              self.nextID = content.get("nextID") # assigns nextID but breaks conditions with type errors
-              if tarid == content["id"]:
+              self.nextID = content.get("nextID")
+              if tarid == content["id"]: # tarid can be boht str and int
                 return content["text"]
               if isinstance(self.nextID, str):
                 self.activeScene = self.nextID

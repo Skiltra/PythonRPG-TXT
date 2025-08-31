@@ -33,10 +33,8 @@ the `getDialogue()` function will display dialogue and handle increments, and ca
 1. id; handle which text to display
 2. nextID; currently implies everything is incremented by 1 from current id
 
-
 other important attributes in json are:
-1. conditions whether it should continue and pursue action and assignments
-2. action # whenever some exeuciton is needed this is the object that is parsed into python code
+1. conditions whether it should continue to display text, follow by 'then' implying execution
 
 in order it is as written in scenes.json id>type>text>nextID>action
 
