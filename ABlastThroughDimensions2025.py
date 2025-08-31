@@ -3,6 +3,7 @@ from time import sleep
 import json
 
 gameState = True
+enablin = True
 
 class dialogueManager:
     def __init__(self):
@@ -16,31 +17,33 @@ class dialogueManager:
       self.activeScene = jsonheading
       self.id = jsonIncrement
       self.text = self.getJSON(jsonheading, self.id) 
+      if type(self.nextID) is str:
+            self.activeScene = self.nextID
+            self.text = self.getJSON(self.activeScene, self.nextID)
       while self.activeScene:
-          if self.text != None:
+          if self.text != None and type(self.nextID) is int:
             print(f"{self.text}")
             sleep(5)
-          if self.nextID > self.id:
-            self.text = self.getJSON(self.activeScene, self.nextID)
-            print(f">displaying test and adjusting IDs")
-          elif isinstance(self.nextID, str): # TODO: DOES NOT WORK STILL implement scenes via text
-             self.activeScene = self.nextID
+            if self.nextID > self.id:
+              self.text = self.getJSON(self.activeScene, self.nextID)
+              print(f">Assigning New Text {self.nextID}")
           else:
-             print(f"SCENE FALLBACK; function couldnt adjust ID's or text already is something; id {self.id} nextID {self.nextID}")
+             print(f"SCENE FALLBACK; text{self.text} id {self.id} nextID {self.nextID}")
+             self.activeScene = self.nextID
+             self.nextID = 0
+             self.getJSON(self.activeScene, self.nextID)
 
     def getJSON(self, menu, tarid):
         print(f">ID Set at {self.id} nextIs {self.nextID}, activeScene: {self.activeScene}")
-        if self.text == None: # A method to end loop and reintialize
-           self.activeScene = False
         with open("scenes.json", "r") as file:
           data = json.load(file) 
-          self.text = data[menu] # Filters JSON by array contents
+          self.text = data[menu]
           for content in self.text:
-              purpose = content.get("nextID")
+              self.nextID = content.get("nextID") # assigns nextID but breaks conditions with type errors
               if tarid == content["id"]:
                 return content["text"]
-              if isinstance(purpose, str):
-                 self.activeScene = purpose
+              if isinstance(self.nextID, str):
+                self.activeScene = self.nextID
 
 class inputSystem:
     def _init_(self):
@@ -129,8 +132,10 @@ def Game_Exit ():
 if __name__ == "__main__":
   while gameState:
     print(" \n Initialized Game States")
-    scenes = dialogueManager()
-    player = Player()
-    input = inputSystem()
+    if enablin:
+      scenes = dialogueManager()
+      player = Player()
+      input = inputSystem()
+      enablin = False
     Main_Menu()
-    scenes.getDialogue("mysteryMan")
+    scenes.getDialogue("ship")

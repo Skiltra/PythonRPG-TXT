@@ -8,9 +8,9 @@
     {
       "id": 1,
       "text": "Your Options are: \n1: new game\n2: load game\n3: exit",
-      "nextID": "characterBackground",
-      "nextFalse": "// this is for replacing nextID in future post testing, if exit get the exit function"
+      "nextID": "characterBackground"
     }
+
   ],
   "characterBackround": [
       {
@@ -387,9 +387,9 @@
   "ship": [
     {
       "id": 0,
-      "conditions": "determine from executionfunc // this is an old version doesnt need to do this follow the standard developed",
+      "conditions": "determine from executionfunc // this is an old version doesnt need to do this follow the standard developed, options 1,2",
       "text": "As you explore the ship, you stumble upon a stack of papers. Some are yellowed with rage",
-      "nextID": "1,2"
+      "nextID": 1
     },
     {
       "id": 1,
@@ -405,7 +405,7 @@
     {
       "id": 3,
       "text": "Where do you hide, there a crate just randomly out and theres a small building with the lights on",
-      "nextID": "4, ",
+      "nextID": 4,
       "action": "inputHandler(variable='hiding')"
     },
     {
@@ -430,8 +430,9 @@
   "backroom": [
     {
       "id": 0,
+      "conditions": "determine from conditions, [1, revolver][2, none]",
       "text": "You enter the backroom and immediately spot two men. Their expressions harden as they recognize you. They advance, clearly in league with the man who attacked you earlier",
-      "nextID": "determine from conditions, [1, revolver][2, none]"
+      "nextID": 1
     },
     {
       "id": 1,
@@ -472,7 +473,7 @@
       {
         "id": 1,
         "text": "You prepare to attack back to see what you have",
-        "nextID": "2",
+        "nextID": 2,
         "action": "rollCombat(), inputHandler('variable', [2fail,3])"
       },
       {
@@ -499,14 +500,15 @@
       },
       {
         "id": 1,
+        "conditions": "inputHandler[variable=2,3,4,5]",
         "text": "Your Choice to Read are, 1. Earth 2. Water 3. Fire 4. Wind",
-        "nextID": "inputHandler[variable=2,3,4,5]"
+        "nextID": 2
       },
       {
         "id": 2,
-        "conditions": "if variable == 1 else increment=6",
+        "conditions": "if variable == 1 else increment=6 then inputHandler(condition[earth], 'water'), increment=7",
         "text": "Earth is strong against water, but is weak against which element?",
-        "nextID": "inputHandler(condition[earth], 'water'), increment=7"
+        "nextID": 7
       },
       {
         "id": 3,
