@@ -3,6 +3,7 @@ from time import sleep
 import json
 
 gameState = True
+enablin = True
 
 class dialogueManager:
     def __init__(self):
@@ -10,32 +11,39 @@ class dialogueManager:
       self.id = None
       self.nextID = 1
       self.text = []
+      self.action = None
 
     def getDialogue(self,jsonheading, jsonIncrement=0):
       self.activeScene = jsonheading
       self.id = jsonIncrement
       self.text = self.getJSON(jsonheading, self.id) 
-      while self.activeScene:
-          if self.text != None:
-            print(f"{self.text}")
-            sleep(5)
-          if self.nextID > self.id:
+      if type(self.nextID) is str: 
+            self.activeScene = self.nextID
             self.text = self.getJSON(self.activeScene, self.nextID)
-            self.id = self.nextID
-            self.nextID +=1
-            print(f"ID {self.id} and next {self.nextID}")
+      while self.activeScene:
+          if self.text != None and type(self.nextID) is int:
+            print(f"{self.text}") #TODO: fix printing of entire JSON file
+            sleep(5)
+            if self.nextID > self.id:
+              self.text = self.getJSON(self.activeScene, self.nextID)
+              print(f">Assigning New Text {self.nextID}")
           else:
-             print("scene fallback")
+             print(f"DEBUG FALLBACK; text{self.text} id {self.id} nextID {self.nextID}")
+             self.getJSON(self.activeScene, self.nextID)
 
     def getJSON(self, menu, tarid):
-        print(f"ID Set to {self.id} next is {self.nextID}, active Scene: {self.activeScene}")
-        with open("scenes.json", "r") as file:
-          data = json.load(file) # loads file
-          self.text = data[menu] #filter the json array
+        print(f">ID Set at {self.id} nextIs {self.nextID}, activeScene: {self.activeScene}")
+        with open("scenes.json", "r", encoding='utf-8' ) as file:
+          data = json.load(file) 
+          self.text = data[menu] 
           for content in self.text:
-              if tarid == content["id"]:
+              self.nextID = content.get("nextID")
+              if tarid == content["id"]: # tarid can be boht str and int
                 return content["text"]
-
+              if isinstance(self.nextID, str):
+                print(">Switching JSON Array")
+                self.nextID = 0
+                self.activeScene = self.nextID
 
 class inputSystem:
     def _init_(self):
@@ -62,8 +70,6 @@ class inputSystem:
            print("pause getDialogue;player types to varibale, options are assigned to self.option, self. variable is compared against self.options continue getDialogue chain")
            if self.userInput in input.advancedType():
               scenes.getDialogue("continue, and unpause getDialogue")
-    def advancedType(self):
-       print("TODO: NEED TO MAKE IT ALLOW FOR COMPARING EXISTENCE OF SEPERATE WORD THAT EXIST IN THE STRING 'jim went to the store' and user input 'jim store' so i need to write logic where this is true as its false because of python logic")
 
 class Player:
   def __init__(self):
@@ -126,8 +132,10 @@ def Game_Exit ():
 if __name__ == "__main__":
   while gameState:
     print(" \n Initialized Game States")
-    player = Player()
-    scenes = dialogueManager()
-    input = inputSystem()
+    if enablin:
+      scenes = dialogueManager()
+      player = Player()
+      input = inputSystem()
+      enablin = False
     Main_Menu()
-    scenes.getDialogue("gameIntro")
+    scenes.getDialogue("ship")
