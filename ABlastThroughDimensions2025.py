@@ -28,21 +28,21 @@ class dialogueManager:
               self.text = self.getJSON(self.activeScene, self.nextID)
               print(f">Assigning New Text {self.nextID}")
           else:
-             print(f"SCENE FALLBACK; text{self.text} id {self.id} nextID {self.nextID}")
-             self.activeScene = self.nextID
-             self.nextID = 0
+             print(f"DEBUG FALLBACK; text{self.text} id {self.id} nextID {self.nextID}")
              self.getJSON(self.activeScene, self.nextID)
 
     def getJSON(self, menu, tarid):
         print(f">ID Set at {self.id} nextIs {self.nextID}, activeScene: {self.activeScene}")
-        with open("scenes.json", "r") as file:
+        with open("scenes.json", "r", encoding='utf-8' ) as file:
           data = json.load(file) 
-          self.text = data[menu]
+          self.text = data[menu] 
           for content in self.text:
               self.nextID = content.get("nextID")
               if tarid == content["id"]: # tarid can be boht str and int
                 return content["text"]
               if isinstance(self.nextID, str):
+                print(">Switching JSON Array")
+                self.nextID = 0
                 self.activeScene = self.nextID
 
 class inputSystem:
