@@ -397,7 +397,7 @@
   "ship": [
     {
       "id": 0,
-      "conditions": "determine from executionfunc // this is an old version doesnt need to do this follow the standard developed, options 1,2",
+      "conditions": "inputHandler('determine',[ID1,ID2])",
       "text": "As you explore the ship, you stumble upon a stack of papers. Some are yellowed with rage",
       "nextID": 1
     },

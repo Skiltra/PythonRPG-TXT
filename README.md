@@ -3,21 +3,15 @@
 - [ ] JSON Scene Editor (nice to have)
 - [ ] New Toggle Based Inventory System
 
-**Consider**
+**Considering**
 - [ ] Check `eval()` relating to passing arguments into python from json conditions and making executions
 - [ ] NPC Speaks to Player by Name
 
 # Overview
 **Scenes**: 20(story) + 2(base)
+started as a collarative project dedicated to learning python a plot design was made as a team and everything in the `ABlastThroughDimensions.py` from *2024*, names given to it where [Times Ascent, A Blast Through Dimensions], this file is V0.1
 
-This is the second version from the first file using the same general plot, but making it more scalable which the other file from *Oct 2024*. isnt. This is mostly a personal project to make it more efficient which isnt suppose to be impressive.
-
-The main improvement to the new version is, it has classes with functions which actually achieve some of the ideas we had planning.
-
-**Old Overview** <br>
-Based on a small team prototyping some ideas, as a compromise we implementing all version of the plot through the idea of it being "time travel" through time hence the titles used for it is known as:
-- Times Ascent
-- A Black Through Dimensions
+This is the V0.2 version (`python v3.12`)from the first file using the same general plot, but making it more scalable which the other file from *Oct 2024*. isnt. This is mostly a personal project to make it more efficient which isnt suppose to be impressive.
 
 # Documentation
 This is me trying to explain the code more of a unprofessional guide to the idea
@@ -26,22 +20,28 @@ the `getDialogue()` function will display dialogue and handle increments, and ca
 1. id; handle which text to display
 2. nextID; currently implies everything is incremented by 1 from current id
 
-other important attributes in json are:
+>Hierarchy: id>conditions>text>nextID
+
+### Conditions and Actions (WIP V0.2)
+This is what is stored in the `scenes.json` an object has a key value  assigned to `conditions`.
+
 1. conditions whether it should continue to display text, follow by 'then' implying execution
 
-in order it is as written in scenes.json id>type>text>nextID>action
 
-## 2 inputHandler
->[!NOTE] Details if inputSystem Class
->This is from the usage of input assigned to variables but putting it into a single function to extend ontop of the built-in `input()`
+## 2 inputHandler (WIP V0.2)
 
-## 3 Locations
+
+## 3 Locations (WIP TBD)
 Previsouly the idea was to use a x and y coordinate about 30x30 'pixels' to mimic location. this was not a nessery component though
 >[!IMPORTANT] Future Development
 >1.  Could be done through the player class as the simplest solutions 
 >2. as its non essentially this may or may not be complete
 
-## 4 Player Class
+## 4 Player Class (WIP TBD)
 - movePOS is suppose to be for 'random events' which never got implemented but was proposed its just skeleton code atm
 - inventory previoly used perimiter but as its not quantitative simply use an on of system for a simpler approach
-=======
+- Conditions being stored for branching paths using JSON `conditions` object
+## a. Inventory
+Toggle based, works kind of like game conditions atm[^1]
+
+[^1]: different from JSON conditions which handles execution
