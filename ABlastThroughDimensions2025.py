@@ -1,4 +1,3 @@
-from random import randint
 from time import sleep
 import json
 
@@ -15,20 +14,23 @@ class dialogueManager:
       self.action = None
 
     def getDialogue(self,jsonheading, jsonIncrement=0):
-      if jsonheading != True: # TODO:  need to test if this is good to prevent overwriting
-        self.activeScene = jsonheading
-      self.id = jsonIncrement # BUG: not a bug need checking to see if it actually does anything 
-      self.text = self.getJSON(jsonheading, self.id) 
-      if type(self.nextID) is str: 
-            self.activeScene = self.nextID
-            self.text = self.getJSON(self.activeScene, self.nextID)
+      if self.id != None:
+          self.id = jsonIncrement 
+      self.text = self.getJSON(jsonheading, self.id)
+      if self.action:
+          inputs.callExec()
+      elif type(self.nextID) is str: 
+          self.activeScene = self.nextID
+          self.text = self.getJSON(self.activeScene, self.nextID)
+      else:
+          print("Sequence Check Failed; either all false or first run")
       while self.activeScene:
           if self.text != None and type(self.nextID) is int:
             print(f"{self.text}")
             sleep(5)
-            if self.nextID > self.id:
-              self.text = self.getJSON(self.activeScene, self.nextID)
-              print(f">Assigning New Text {self.nextID}")
+          if self.nextID > self.id:
+            self.text = self.getJSON(self.activeScene, self.nextID)
+            print(f">Assigning New Text from {self.nextID}")
           else:
              print(f"DEBUG FALLBACK; text{self.text} id {self.id} nextID {self.nextID}")
              self.getJSON(self.activeScene, self.nextID)
@@ -40,14 +42,14 @@ class dialogueManager:
           self.text = data[menu] 
           for content in self.text:
               self.nextID = content.get("nextID")
-              # if content == data["conditions"]: # TODO: WIP adds Inputs using self.actions list
-              #    input.inputHandler()
+              # if content == data["conditions"]:
+              #     self.action = content.get("conditions")
               if tarid == content["id"]:
-                return content["text"]
+                  return content["text"]
               if isinstance(self.nextID, str):
-                print(">Switching JSON Array")
-                self.nextID = 0
-                self.activeScene = self.nextID
+                  print(">Switching JSON Array")
+                  self.nextID = 0
+                  self.activeScene = self.nextID
 
 class inputSystem:
     def _init_(self):
@@ -65,9 +67,8 @@ class inputSystem:
             self.option = self.variable 
         if option == "determine":
            print("using conditions, also passes to getDialogue class variables")
-          #  conditions # as in this has to check conditions to determine which ID is needed on conditions attribute in json
         if option == "typing":
-           print("pause getDialogue;player types to variable, options are assigned to self.option, self. variable is compared against self.options continue getDialogue chain")
+           print("")
 
 def Main_Menu():
   print("""
@@ -85,25 +86,21 @@ def Main_Menu():
         """)
 
 ############################ Loop and Exit Functions ############################
-def gameend():
+def Game_Exit ():
   with open("save.txt", "w") as file:
       print("TODO: need save instances for sceneLoader and future player class")
-  Game_Exit ()
-
-def Game_Exit ():
   choice = input('Press Q to Quit')
   if choice == 'q':
     gameState = False
 
 if __name__ == "__main__":
   while gameState:
-    print(" \n Initialized Game States")
     if enablin:
+      print(" \n Initialized Game States")
       scenes = dialogueManager()
-      # player = Player() # TODO: 
-      input = inputSystem()
+      inputs = inputSystem()
       enablin = False
     Main_Menu()
-    if scenes.activeScene != None: # BUG: this returns runtime errors
+    if scenes.activeScene != None:
        sceneLoader = scenes.activeScene
-    scenes.getDialogue(sceneLoader) # TODO: Make this a scene switcher
+    scenes.getDialogue(sceneLoader)
