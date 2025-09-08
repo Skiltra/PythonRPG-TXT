@@ -1,11 +1,7 @@
-# TODO
+# v0.2 TODO
 - [x] Work on `dialogueManager()` display & `getJSON()` parsing
 - [ ] JSON Scene Editor (nice to have)
 - [ ] New Toggle Based Inventory System
-Commit "While dialogue currently not ran, broken before this loop"
-**Considering**
-- [ ] Check `eval()` relating to passing arguments into python from json conditions and making executions
-- [ ] NPC Speaks to Player by Name
 
 # Overview
 **Scenes**: 20(story) + 2(base)

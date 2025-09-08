@@ -132,7 +132,7 @@
     },
     {
       "id": 10,
-      "text": "you decide to follow the tunnel going up, and finally you are on the top of the mountain, then you spot the dragon",
+      "text": "You decide to follow the tunnel going up, and finally you are on the top of the mountain, then you spot the dragon",
       "nextID": "dragonsPeak"
     }
   ],
@@ -164,7 +164,7 @@
     {
       "id": 4,
       "conditions": "then rollCombat()",
-      "text": "you decide to help the farmers to fight the Lords Army.As you fight off the army, you are stopped by the peasants rebellion",
+      "text": "You decide to help the farmers to fight the Lords Army.As you fight off the army, you are stopped by the peasants rebellion",
       "nextID": "eldersHut"
     }
   ],
@@ -208,29 +208,29 @@
     {
       "id": 2,
       "conditions": "inputHandler#playerTypeResponse'what do you need?'",
-      "text": "Well hello {name}, its good to meet you i was in fact looking for a warrior type such as, after all i heard what you did for my village",
+      "text": "Well hello {name}, its good to meet you i was in fact looking for a warrior type such as, after all I heard what you did for my village",
       "nextID": 3
     },
     {
       "id": 3,
-      "text": "the elder speaks, 'well you see i need a specific herb, it has magical properties unfrotunetly neither of my servant here that tend my farm are brave enough, so i would ask you to go into the cave its along the path to the mountain",
+      "text": "the elder speaks, 'well you see I need a specific herb, it has magical properties unfrotunetly neither of my servant here that tend my farm are brave enough, so I would ask you to go into the cave its along the path to the mountain",
       "nextID":  4
     },
     {
       "id": 4,
       "conditions": "inputHandler(choices)",
-      "text": "you head up the path it gets narrow and more narrow as you get closer to the top, luckily you see the cave is close it looks like a mine, but its very narrow, the path also continues, What do you do?",
+      "text": "You head up the path it gets narrow and more narrow as you get closer to the top, luckily you see the cave is close it looks like a mine, but its very narrow, the path also continues, What do you do?",
       "nextID": 5
     },
     {
       "id": 5,
-      "text": "you decide to risk the jump",
+      "text": "You decide to risk the jump",
       "nextID": 6
     },
     {
       "id": 6,
       "conditions": "then rollStatsCheck()",
-      "text": "you begin to make the leap, and you quickly move to the narrow gap",
+      "text": "You begin to make the leap, and you quickly move to the narrow gap",
       "nextID": "obsidianMine"
     }
   ],
@@ -239,13 +239,13 @@
     {
       "id": 0,
       "condition": "inputHandler('choice', ['ID1Spy', 'ID3Attack'])",
-      "text": "//TODO: Incomplete tree //You are at the bandit camp, please type if you want to: 1. work with bandits  \n 2. attack bandits \n 3. spy on bandits",
+      "text": "You are at the bandit camp, please type if you want to: 1. work with bandits  \n 2. attack bandits \n 3. spy on bandits",
       "nextID": 1
     },
     {
       "id": 1,
       "conditions": "then inputHandler",
-      "text": "you decide to spy on the bandits",
+      "text": "You decide to spy on the bandits",
       "nextID": 2
     },
     {
@@ -273,7 +273,7 @@
     {
       "id": 0,
       "conditions": "inputHandler('determine', ['ID1', 'ID2','ID3','ID4']) then rollCombat()",
-      "text": "a dragon flies down and begins to attack",
+      "text": "A dragon flies down and begins to attack",
       "nextID": 1
     },
     {
@@ -326,7 +326,7 @@
     {
       "id": 0,
       "conditions": "inputHandler('choice', ['ID1crates', 'ID2ship', 'ID3reception'])",
-      "text": "a person walks by you decide to hide",
+      "text": "A person walks by you decide to hide",
       "nextID": 1
     },
     {
@@ -702,7 +702,7 @@
       {
         "id": 2,
         "conditions": "'companion' in player.inventory then player.score +=40, player.remove('companion'), player.inventory('corrupted')",
-        "text": "unfortunely your alien friend fight the dragon as you flank but your aline freidn evaporate but you manage to take the dragon our",
+        "text": "Unfortunely your alien friend fight the dragon as you flank but your alien friend evaporate but you manage to take the dragon our",
         "nextID": "endGame"
       }
     ],
@@ -716,7 +716,7 @@
       {
         "id": 1,
         "conditions": "if player.health > 1",
-        "text": "\n you completed the game with a score of {player.score} and your remaining health was {player.health} \n well done :)"
+        "text": "You completed the game with a score of {player.score} and your remaining health was {player.health} \n well done :)"
       },
       {
         "id": 2,
