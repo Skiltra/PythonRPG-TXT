@@ -10,44 +10,42 @@ counter = 0 # BUG: debug only; using to check for loop consistency
 class dialogueManager:
     def __init__(self):
       self.activeScene = None
-      self.id = 0
-      self.nextID = 1
+      self.id = [0,1]
       self.text = []
       self.action = None
 
     def getDialogue(self,jsonheading, jsonIncrement=0):
-      self.text = self.getJSON(jsonheading, self.id)
-      if self.nextID > self.id:
-          self.text = self.getJSON(self.activeScene, self.nextID)
-          print(f">Assigning New Text from {self.nextID}")
-      # if self.action: # TODO: Uncommemt
-      #     inputs.callExec()
+      if self.id[0] < self.id[1]:
+          self.text = self.getJSON(jsonheading, self.id[0])
+          self.id[0] = self.id[1]
+          self.id[1] += 1
+          print(f">Assigning New Text!!  ID:{self.id} text {self.text}")
       else:
           print("Sequence Check Failed; either all false or first run")
-          self.text = self.getJSON(self.activeScene, self.nextID)
       while self.activeScene:
-          if self.text != None and type(self.nextID) is int:
-            print(f"{self.text} DATA TESTING: C{counter}, ID{self.id}, NID{self.nextID}")
+          if self.text != None and type(self.id[1]) is int: #TODO: implement new id system
+            print(f"{self.text} DATA TESTING: C{counter}, ID{self.id}, ACT {self.action}")
             sleep(5)
-          elif type(self.nextID) is str:
-            self.activeScene = self.nextID
-            self.text = self.getJSON(self.activeScene, self.nextID)        
+          elif type(self.id[1]) is str:
+            self.activeScene = self.id[1]
+            self.text = self.getJSON(self.activeScene, self.id[1])        
 
     def getJSON(self, menu, tarid):
         self.activeScene = menu
         global counter
         with open("scenes.json", "r", encoding='utf-8') as file:
           data = json.load(file) 
-          self.text = data[menu] 
+          self.text = data[menu] # BUG: may be redudant when it works, loop can just use data
           for content in self.text:
-              self.nextID = content.get("id")
+              self.action = content.get("conditions")
               counter +=1
-              if tarid == content["id"]: # BUG:  ids not changing need fix see DATA TESTING when run
+              if tarid == content["nextID"]: # BUG:  ids not changing need fix see DATA TESTING when run
                   return content["text"]
-              if isinstance(self.nextID, str):
+              if isinstance(self.id[1], str):
+                  global sceneLoader
                   print(">Switching JSON Array")
-                  self.nextID = 0
-                  self.activeScene = self.nextID
+                  self.id[1] = 0
+                  self.activeScene = self.id[1]
     def callExec(self):
        print("TODO: use player class when re-added to get functions")
        self.action = None
@@ -65,8 +63,6 @@ class inputSystem:
            print("find way to have choice")
         if option == "determine":
            print("using conditions, also passes to getDialogue class variables")
-
-
 
 def Main_Menu():
   print("""
