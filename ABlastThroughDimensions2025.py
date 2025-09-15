@@ -4,61 +4,59 @@ import tkinter as tk
 
 gameState = True
 enablin = True
-sceneLoader = "ship"
-counter = 0 # BUG: debug only; using to check for loop consistency
+sceneLoader = "backroom"
+counter = 0
 
 class dialogueManager:
     def __init__(self):
-      self.activeScene = None
-      self.id = [0,1]
+      self.scene = sceneLoader
+      self.id = ["active",0,1]
       self.text = []
       self.action = None
 
-    def getDialogue(self,jsonheading, jsonIncrement=0):
-      if self.id[0] < self.id[1]:
-          self.text = self.getJSON(jsonheading, self.id[0])
-          self.id[0] = self.id[1]
-          self.id[1] += 1
-          print(f">Assigning New Text!!  ID:{self.id} text {self.text}")
-      else:
-          print("Sequence Check Failed; either all false or first run")
-      while self.activeScene:
-          if self.text != None and type(self.id[1]) is int: #TODO: implement new id system
-            print(f"{self.text} DATA TESTING: C{counter}, ID{self.id}, ACT {self.action}")
+    def getDialogue(self,jsonheading=sceneLoader, jsonIncrement=0): #TODO: do something with increment or ELSE
+      print(f"{self.scene}")
+      if self.id[1] < self.id[2]: # WORKS AS INTENDED
+          self.scene = self.getJSON(jsonheading, self.id[1])
+      while self.scene:
+          print(f"text {self.text}")
+          if self.text != None and type(self.id[2]) is int: # BUG: ENDLESS LOOP HERE
+            print(f"{self.text} dataDEBUG: C{counter}, ID{self.id}, ACT{self.action}")
             sleep(5)
-          elif type(self.id[1]) is str:
-            self.activeScene = self.id[1]
-            self.text = self.getJSON(self.activeScene, self.id[1])        
+          if type(self.id[2]) is str:
+            global sceneLoader
+            self.scene = self.id[2]
+            sceneLoader = self.getJSON(self.scene, self.id[2])      
 
     def getJSON(self, menu, tarid):
-        self.activeScene = menu
+        self.scene = menu
         global counter
+        print(f"dataDEBUG: C{counter}, ID{self.id}, ACT{self.action}")
         with open("scenes.json", "r", encoding='utf-8') as file:
           data = json.load(file) 
-          self.text = data[menu] # BUG: may be redudant when it works, loop can just use data
+          self.text = data[menu]
           for content in self.text:
               self.action = content.get("conditions")
               counter +=1
-              if tarid == content["nextID"]: # BUG:  ids not changing need fix see DATA TESTING when run
+              if tarid == self.id:
                   return content["text"]
-              if isinstance(self.id[1], str):
+              if isinstance(self.id[2], str):
                   global sceneLoader
                   print(">Switching JSON Array")
-                  self.id[1] = 0
-                  self.activeScene = self.id[1]
+                  self.id[2] = 0
+                  self.scene = self.id[2]
     def callExec(self):
        print("TODO: use player class when re-added to get functions")
        self.action = None
 
 class inputSystem:
     def _init_(self):
-      self.options = [] # Used for storing options
-      self.variable = None # Used for checking previous options
-      self.userInput = None # used for comparing user data
+      self.options = [] # storing user options
+      self.variable = None # checking chosen option
+      self.userInput = None # comparing user data
 
     def inputHandler(self, option, list=None):
-        tk.entry()
-        print("pause getDialogue through activeScene")
+        tk.entry(self.userInput)
         if option == "choices":
            print("find way to have choice")
         if option == "determine":
@@ -95,6 +93,6 @@ if __name__ == "__main__":
       inputs = inputSystem()
       enablin = False
     Main_Menu()
-    if scenes.activeScene != None:
-       sceneLoader = scenes.activeScene
-    scenes.getDialogue(sceneLoader)
+    if scenes.scene == None:
+       sceneLoader = scenes.scene
+    scenes.getDialogue()
