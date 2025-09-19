@@ -1,0 +1,20 @@
+{
+    "player": [
+        {
+            "name": "",
+            "type": "player",
+            "strength": 0,
+            "element": "FALSE"
+        }
+
+    ],
+    "witch": [
+        {
+            "name": "Witch",
+            "type": "NPC",
+            "relation": 0
+        }
+
+    ]
+
+}

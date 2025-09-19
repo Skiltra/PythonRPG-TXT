@@ -1,6 +1,6 @@
 from time import sleep
 import json
-import tkinter as tk
+import sqlite3 as sql # runtime JSON
 
 gameState = True
 enablin = True
@@ -14,14 +14,15 @@ class dialogueManager:
       self.text = []
       self.action = None
 
-    def getDialogue(self,jsonheading=sceneLoader, jsonIncrement=0): #TODO: do something with increment or ELSE
+    def getDialogue(self,jsonheading=sceneLoader, jsonIncrement=0): #TODO: incrment is unused by self.id
       print(f"{self.scene}")
       if self.id[1] < self.id[2]: # WORKS AS INTENDED
-          self.scene = self.getJSON(jsonheading, self.id[1])
+          self.scene = self.getJSON(jsonheading, jsonIncrement) # BUG: testing this line perim
       while self.scene:
           print(f"text {self.text}")
           if self.text != None and type(self.id[2]) is int: # BUG: ENDLESS LOOP HERE
             print(f"{self.text} dataDEBUG: C{counter}, ID{self.id}, ACT{self.action}")
+            self.text = self.getJSON(self.scene, self.id[2])  # TESTING: because its new code without any idea how it works
             sleep(5)
           if type(self.id[2]) is str:
             global sceneLoader
@@ -31,7 +32,7 @@ class dialogueManager:
     def getJSON(self, menu, tarid):
         self.scene = menu
         global counter
-        print(f"dataDEBUG: C{counter}, ID{self.id}, ACT{self.action}")
+        print(f">dataDEBUG: C{counter}, ID{self.id}, ACT:{self.action}")
         with open("scenes.json", "r", encoding='utf-8') as file:
           data = json.load(file) 
           self.text = data[menu]
@@ -45,9 +46,12 @@ class dialogueManager:
                   print(">Switching JSON Array")
                   self.id[2] = 0
                   self.scene = self.id[2]
-    def callExec(self):
-       print("TODO: use player class when re-added to get functions")
-       self.action = None
+    def loadDB(name):
+       if name in lorem:
+          print("from json load into sql")
+          print("generate new file name from existing")
+       sql.connect(f"{name}.db")
+
 
 class inputSystem:
     def _init_(self):
@@ -56,7 +60,6 @@ class inputSystem:
       self.userInput = None # comparing user data
 
     def inputHandler(self, option, list=None):
-        tk.entry(self.userInput)
         if option == "choices":
            print("find way to have choice")
         if option == "determine":
