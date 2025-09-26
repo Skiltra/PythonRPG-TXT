@@ -1,6 +1,7 @@
 from time import sleep
 import json
-import sqlite3 as sql # runtime JSON
+import sys
+import sqlite3 as sql 
 
 gameState = True
 enablin = True
@@ -12,7 +13,7 @@ class dialogueManager:
       self.scene = sceneLoader
       self.id = ["active",0,1]
       self.text = []
-      self.action = None
+      self.actionNotify = None
 
     def getDialogue(self,jsonheading=sceneLoader, jsonIncrement=0): #TODO: incrment is unused by self.id
       print(f"{self.scene}")
@@ -32,7 +33,7 @@ class dialogueManager:
     def getJSON(self, menu, tarid):
         self.scene = menu
         global counter
-        print(f">dataDEBUG: C{counter}, ID{self.id}, ACT:{self.action}")
+        print(f">getJSON DEBUG: C{counter}, ID{self.id}, ACT:{self.actionNotify}")
         with open("scenes.json", "r", encoding='utf-8') as file:
           data = json.load(file) 
           self.text = data[menu]
@@ -47,7 +48,7 @@ class dialogueManager:
                   self.id[2] = 0
                   self.scene = self.id[2]
     def loadDB(name):
-       if name in lorem:
+       if name in enablin: # TRYING SOME THINGS THIS HAS NO DIRECT CONNECTION
           print("from json load into sql")
           print("generate new file name from existing")
        sql.connect(f"{name}.db")
@@ -65,9 +66,15 @@ class inputSystem:
         if option == "determine":
            print("using conditions, also passes to getDialogue class variables")
 
-def Main_Menu():
-  print("""
 
+class menuSystem:
+    def __init__(self):
+        self.menu = {}
+
+    def mainMenu(self):
+       print("ext game etc, future for difficulty")
+    def startGame(self):
+        print("""\n
     _      ____  _           _     _____ _                           _     
    / \    | __ )| | __ _ ___| |_  |_   _| |__  _ __ ___  _   _  __ _| |__  
   / _ \   |  _ \| |/ _` / __| __|   | | | '_ \| '__/ _ \| | | |/ _` | '_ \ 
@@ -76,26 +83,24 @@ def Main_Menu():
 |  _ \(_)_ __ ___   ___ _ __  ___(_) ___  _ __  ___            |___/       
 | | | | | '_ ` _ \ / _ \ '_ \/ __| |/ _ \| '_ \/ __|                       
 | |_| | | | | | | |  __/ | | \__ \ | (_) | | | \__ \                       
-|____/|_|_| |_| |_|\___|_| |_|___/_|\___/|_| |_|___/                       
-
+|____/|_|_| |_| |_|\___|_| |_|___/_|\___/|_| |_|___/                       \n
         """)
+        print("if save exist load else new save")
+        scenes.getDialogue("menu")
+    def endGame():
+      print("force quit")
+      with open("save.txt", "w") as file:
+        choice = input('Press Q to Quit')
+        if choice == 'q':
+          gameState = False
 
 ############################ Loop and Exit Functions ############################
-def Game_Exit ():
-  with open("save.txt", "w") as file:
-      print("TODO: need save instances for sceneLoader and future player class")
-  choice = input('Press Q to Quit')
-  if choice == 'q':
-    gameState = False
-
 if __name__ == "__main__":
   while gameState:
     if enablin:
       print("Initialized Game States")
       scenes = dialogueManager()
       inputs = inputSystem()
+      menu = menuSystem()
       enablin = False
-    Main_Menu()
-    if scenes.scene == None:
-       sceneLoader = scenes.scene
-    scenes.getDialogue()
+    menu.startGame()

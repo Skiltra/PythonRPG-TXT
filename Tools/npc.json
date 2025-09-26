@@ -6,7 +6,6 @@
             "strength": 0,
             "element": "FALSE"
         }
-
     ],
     "witch": [
         {
@@ -14,7 +13,26 @@
             "type": "NPC",
             "relation": 0
         }
-
+    ],
+    "elder": [
+        {
+            "name": "Village Elder",
+            "type": "NPC",
+            "relation": 0
+        }
+    ],
+    "lord": [
+        {
+            "name": "Noble Lord",
+            "type": "NPC",
+            "relation": 0
+        }
+    ],
+    "king": [
+        {
+            "name": "King",
+            "type": "NPC",
+            "relation": 0
+        }
     ]
-
 }
