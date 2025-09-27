@@ -15,15 +15,14 @@ class dialogueManager:
       self.text = []
       self.actionNotify = None
 
-    def getDialogue(self,jsonheading=sceneLoader, jsonIncrement=0): #TODO: incrment is unused by self.id
+    def getDialogue(self,jsonheading=sceneLoader, jsonIncrement=0):
       print(f"{self.scene}")
-      if self.id[1] < self.id[2]: # WORKS AS INTENDED
-          self.scene = self.getJSON(jsonheading, jsonIncrement) # BUG: testing this line perim
+      if self.id[1] < self.id[2]:
+          self.scene = self.getJSON(jsonheading, jsonIncrement)
       while self.scene:
           print(f"text {self.text}")
           if self.text != None and type(self.id[2]) is int: # BUG: ENDLESS LOOP HERE
             print(f"{self.text} dataDEBUG: C{counter}, ID{self.id}, ACT{self.action}")
-            self.text = self.getJSON(self.scene, self.id[2])  # TESTING: because its new code without any idea how it works
             sleep(5)
           if type(self.id[2]) is str:
             global sceneLoader
@@ -42,11 +41,13 @@ class dialogueManager:
               counter +=1
               if tarid == self.id:
                   return content["text"]
-              if isinstance(self.id[2], str):
+              elif isinstance(self.id[2], str):
                   global sceneLoader
                   print(">Switching JSON Array")
                   self.id[2] = 0
                   self.scene = self.id[2]
+              else:
+                 print("all json conditions failed")
     def loadDB(name):
        if name in enablin: # TRYING SOME THINGS THIS HAS NO DIRECT CONNECTION
           print("from json load into sql")
@@ -85,22 +86,17 @@ class menuSystem:
 | |_| | | | | | | |  __/ | | \__ \ | (_) | | | \__ \                       
 |____/|_|_| |_| |_|\___|_| |_|___/_|\___/|_| |_|___/                       \n
         """)
-        print("if save exist load else new save")
         scenes.getDialogue("menu")
     def endGame():
-      print("force quit")
-      with open("save.txt", "w") as file:
-        choice = input('Press Q to Quit')
-        if choice == 'q':
-          gameState = False
+        gameState = False
 
 ############################ Loop and Exit Functions ############################
 if __name__ == "__main__":
   while gameState:
     if enablin:
-      print("Initialized Game States")
       scenes = dialogueManager()
       inputs = inputSystem()
       menu = menuSystem()
+      print("Initialized Game States")
       enablin = False
     menu.startGame()

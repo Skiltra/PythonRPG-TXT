@@ -3,7 +3,7 @@
         {
             "name": "",
             "type": "player",
-            "strength": 0,
+            "attributes": {"strength": 0, "barter": 0, "perception": 0},
             "element": "FALSE"
         }
     ],
