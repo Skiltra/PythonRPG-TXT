@@ -1,6 +1,5 @@
 ###########################################// TESTING \\#############################################
 
-
 class markets:
     def __init__(self):
         traders = {
@@ -8,6 +7,8 @@ class markets:
             "Trader2": {0},
             "Trader3": {0}
         }
+    def trading(self, target, actor):
+        print("TODO: figure out simple system for trading")
 
 class economy:
     def __init__(self):

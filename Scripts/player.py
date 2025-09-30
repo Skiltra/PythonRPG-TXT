@@ -21,8 +21,11 @@ class Player():
 
 class locations:
     def __init__(self):
-        self.xPOS = 15
-        self.yPOS = 15
+        self.xPOS = 8
+        self.yPOS = 8
 
     def dates():
         print("either new class or sub component of locations")
+    def randomEvent():
+        print("TODO: passive encounters")
+        print("TODO: aggressive encounters")

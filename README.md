@@ -28,8 +28,9 @@ what im trying to  get user input and interaction from
 Toggle based, works kind of like game conditions atm[^1]
 
 ### b. Locations (WIP TBD)
-locations is simply global conditions based on a `position system` using x and y, which is a 30*30 grid, not implemented but was the simplest idea for a beginning to build onto.
+locations is simply global conditions based on a `position system` using x and y, not implemented but was the simplest idea for a beginning to build onto.
 - using strings to identify location or a JSON locations data with name and returning it in a python location class
 - x and y kept track by the player class
+- using a 15\*15 grid instead of the 30\*30 grid
 
-[^1]: different from JSON conditions which handles execution
+[^1]: different from JSON conditions which handles execution 
