@@ -1,9 +1,10 @@
-###########################################// TESTING: \\#############################################
-########################### SUPPOSE TO REPLACE Scenes or supplement it! ##############################
+###########################################// Events: \\#############################################
 import random
 import json
+from Scripts.player import Player as play
+from Scripts.ai_npc import behaviour
 from time import sleep
-
+from market import economy
 
 
 class eventSystem:
@@ -17,16 +18,18 @@ class eventSystem:
     
     def mapMode(self):
        print("movement without dialogue loop or input wait")
+       print(dialogueManager())
 
 
 class dialogueManager():
-    def __init__(self):
-      self.scene = sceneLoader
+    def __init__(self, scene):
+      self.scene = scene
       self.id = ["active",0,1]
       self.text = []
       self.actionNotify = None
 
-    def getDialogue(self,jsonheading=sceneLoader, jsonIncrement=0):
+    def getDialogue(self,jsonheading=None, jsonIncrement=0):
+      jsonheading = self.scene
       print(f"{self.scene}")
       if self.id[1] < self.id[2]:
           self.scene = self.getJSON(jsonheading, jsonIncrement)
@@ -58,24 +61,19 @@ class dialogueManager():
               else:
                  print("all json conditions failed")
 
+## READ: factor1 + factor2 / 2 = combined then combined < roll = True (flag made)
+class rollSystem:
+    def __init__(self, max=100):
+        self.chance = 0.5
+        self.flags = 0 # determine long term behavoiur even for sucessful actions or repititious behhaviour
+        self.maxFlags = max # if higher set to 100
 
-# EXPERIMENTING HERE, UNRELATED TO GOALS
-class actions:
-    def __init__(self):
-        self.actionsSet = {
-            "passive": {
-                "talk"
-                "insult"
-
-            },
-            "active": {
-                "gift": [0,0,0]
-
-            },
-            "special": {
-
-            }
-        }
-    
-    def barter():
-        print("from companion inventory or player exchange items")
+    def outcome(self):
+       number = random.random()
+       if self.chance < number:
+          return True
+       else:
+          return False
+       
+    def changeAction(self):
+       print("g")

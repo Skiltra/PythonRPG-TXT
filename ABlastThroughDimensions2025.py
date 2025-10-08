@@ -1,6 +1,9 @@
 import os
 import sys
-# TODO: figure out imports of files
+from Scripts.events import dialogueManager as dialogue
+from Scripts.player import Player
+from Scripts.market import market # TODO: for updating monthly
+from pathlib import Path
 
 gameState = True
 enablin = True
@@ -12,6 +15,14 @@ class inputSystem:
       self.variable = None # checking chosen option
       self.userInput = None # comparing user data
 
+class saving:
+    def __init__(self):
+      self.jason = {}
+      FILE_DIR = Path(__file__) # TODO: path location
+
+    def save(self):
+      with open("save.json", "w"):
+         print("opened file")
 
 class menuSystem:
     def __init__(self):
@@ -39,9 +50,13 @@ class menuSystem:
 if __name__ == "__main__":
   while gameState:
     if enablin:
-      # scenes = dialogueManager()
-      inputs = inputSystem()
+      scenes = dialogue(sceneLoader)
       menu = menuSystem()
+      playing = Player()
+      econ = market()
       print("Initialized Game States")
       enablin = False
-    menu.startGame()
+    if playing.jim == 2:
+      menu.startGame()
+    else: 
+       print("main while loop failed")
