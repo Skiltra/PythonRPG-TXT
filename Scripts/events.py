@@ -1,7 +1,7 @@
 ###########################################// Events: \\#############################################
 import random
 import json
-from Scripts.player import Player as play
+import player as play
 from Scripts.ai_npc import behaviour
 from time import sleep
 from market import economy

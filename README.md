@@ -1,3 +1,7 @@
+**DATA ON PROGRESS**
+
+
+
 # Overview
 **Scenes**: 20(story) + 2(base)
 started as a collarative project dedicated to learning python a plot design was made as a team and everything in the `ABlastThroughDimensions.py` from *2024*, names given to it where [Times Ascent, A Blast Through Dimensions], this file is V0.1
@@ -10,8 +14,6 @@ Trying to describe the general idea around the functions that may or may not exi
 the `getDialogue()` function will display dialogue and handle increments, and call `getJSON()` to grab from the scene.JSON, the relevant objects are
 1. id; handle which text to display
 2. nextID; currently implies everything is incremented by 1 from current id
-
->Hierarchy: id>conditions>text>nextID
 
 ### Conditions & Actions (WIP V0.2)
 This is what is stored in the `scenes.json` an object has a key value  assigned to `conditions`.

@@ -3,6 +3,9 @@ from market import markets # for sell buy
 
 
 class locations:
+    location = {}
+    grid = 15 * 15
+
     def __init__(self):
         self.POS = [8,8]
         self.year = 0
@@ -12,6 +15,11 @@ class locations:
 
     def dates(self):
         print(f"Y: {self.year}, D: {self.day} Time: {self.hour}:{self.minutes}")
+
+    @classmethod
+    def loadLocationData(cls,source):
+        cls.locations = jason.load(source) # JASON is the JSON ive got to figure out in main.py
+
 
 class Inventory:
     def __init__(self):

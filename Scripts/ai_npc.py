@@ -6,12 +6,6 @@ from player import inventory
 npcLoad = True
 source = None
 
-def callActions():
-    if source:
-        print("")
-    else:
-        print("no source cannot parse")
-
 # TODO: use npc.json
 class behaviour(rollSystem):
     def __init__(self, type, health=100):
@@ -48,7 +42,11 @@ class enemy(behaviour):
         behaviour.__init__(self)
         self.loot = None
 
+class relations:
+    def __init__(self):
+        print("this relation")
+
 ######### INITIALIZE
 if npcLoad:
-    callActions(source) # TODO: link either to events roll or figure out actions
     npcLoad = False
+    rel = relations()
