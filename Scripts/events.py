@@ -2,7 +2,7 @@
 import random
 import json
 import player as play
-from Scripts.ai_npc import behaviour
+from Scripts.npc import behaviour
 from time import sleep
 from market import economy
 
