@@ -1,8 +1,8 @@
 ###########################################// Events: \\#############################################
 import random
 import json
-import player as play
-from Scripts.npc import behaviour
+import Scripts.player as play
+from Scripts.player import behaviour
 from time import sleep
 from market import economy
 
@@ -43,23 +43,6 @@ class dialogueManager():
             self.scene = self.id[2]
             sceneLoader = self.getJSON(self.scene, self.id[2])      
 
-    def getJSON(self, menu, tarid):
-        self.scene = menu
-        print(f">getJSON DEBUG: ID{self.id}, ACT:{self.actionNotify}")
-        with open("scenes.json", "r", encoding='utf-8') as file:
-          data = json.load(file) 
-          self.text = data[menu]
-          for content in self.text:
-              self.action = content.get("conditions")
-              if tarid == self.id:
-                  return content["text"]
-              elif isinstance(self.id[2], str):
-                  global sceneLoader
-                  print(">Switching JSON Array")
-                  self.id[2] = 0
-                  self.scene = self.id[2]
-              else:
-                 print("all json conditions failed")
 
 ## READ: factor1 + factor2 / 2 = combined then combined < roll = True (flag made)
 class rollSystem:
@@ -74,6 +57,9 @@ class rollSystem:
           return True
        else:
           return False
+       
+    def basic(self):
+       return random.random()
        
     def changeAction(self):
        print("g")

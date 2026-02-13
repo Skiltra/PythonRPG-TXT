@@ -20,11 +20,11 @@ def clear():
         
 def Main_Menu ():
   global score
-  if os.path.exists("scorelog.txt"):
+  if os.path.exists("data/scorelog.txt"):
     type = "a"
   else:
     type = "w"
-  with open("scorelog.txt", type) as file:
+  with open("data/scorelog.txt", type) as file:
     file.write(str(score))
   Choices = ["1", "2"]
   print("""\n\n
