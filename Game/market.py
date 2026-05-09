@@ -1,9 +1,8 @@
 ###########################################// TESTING \\#############################################
-from player import locations # BUG circular import
 import random
 
 
-class markets:
+class Markets:
     def __init__(self):
         self.trader = 0
         self.traders = {
@@ -15,8 +14,7 @@ class markets:
             if target in self.traders :
                     self.trader += 1
 
-class economy:
-    enabled = True
+class Economy:
     def __init__(self):
         self.growth = 0.1
         self.supplyBase = {
@@ -24,9 +22,8 @@ class economy:
              "sword":0.08,
              "potion": 0.3
         }
-        if economy.enabled:
-             self.makeEconomy
-             enabled = False
+        self.makeEconomy()
+
     
     def makeEconomy(self):
          newGrowth = random.random() # TODO: make this based on something else
@@ -34,5 +31,5 @@ class economy:
          print("set supply of the market class")
          print("set new growth // should be based on something else")
 
-market = markets()
+market = Markets()
 market.trading("person")

@@ -2,26 +2,26 @@
 import random
 import json
 import Scripts.player as play
-from Scripts.player import behaviour
+from Scripts.player import Behaviour
 from time import sleep
-from market import economy
+from market import Economy
 
 
-class eventSystem:
+class Eventsystem:
     def __init__(self):
         self.varUse = None
         print("instance event initialized")
 
     def randomEvent(self):
         number = random.randint(1,7)
-        print("was in plannign for original never implementede")
+        print("was in plannign for original never implemented")
     
     def mapMode(self):
        print("movement without dialogue loop or input wait")
-       print(dialogueManager())
+       print(DialogueManager())
 
 
-class dialogueManager():
+class DialogueManager():
     def __init__(self, scene):
       self.scene = scene
       self.id = ["active",0,1]
@@ -43,12 +43,12 @@ class dialogueManager():
             self.scene = self.id[2]
             sceneLoader = self.getJSON(self.scene, self.id[2])      
 
-
+# TODO: Replace with mgrNumbers
 ## READ: factor1 + factor2 / 2 = combined then combined < roll = True (flag made)
-class rollSystem:
+class RollSystem:
     def __init__(self, max=100):
         self.chance = 0.5
-        self.flags = 0 # determine long term behavoiur even for sucessful actions or repititious behhaviour
+        self.flags = 0 # determine long term behavior even for successful actions or repetitious behavior
         self.maxFlags = max # if higher set to 100
 
     def outcome(self):
@@ -57,9 +57,11 @@ class rollSystem:
           return True
        else:
           return False
-       
-    def basic(self):
-       return random.random()
-       
+
     def changeAction(self):
-       print("g")
+       print(f"{self.flags}")
+
+    @staticmethod
+    def basic():
+       return random.random()
+
