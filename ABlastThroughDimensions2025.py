@@ -1,19 +1,20 @@
-import os
 import sys
-from Scripts.events import dialogueManager as dialogue
-from Scripts.player import Player
+import multiprocessing  # For running multiple loops later
+from Game.events import DialogueManager as dialogue
+from Game.player import Player
 from pathlib import Path
 import json
 
-gameState = True
-intialize = True
+initialize = True
 sceneLoader = "backroom"
 
 
-class GameState: # TODO: figure out location in player.py
-    def __init__(self, scenes, npc, locations):
+class Game: # TODO: figure out location in player.py
+    state = False
+
+    def __init__(self, sceneStart, npc, locations):
         self.data = {}
-        self.scenes = scenes
+        self.scenes = sceneStart
         self.npc = npc
         self.locations = locations
 
@@ -25,10 +26,10 @@ class GameState: # TODO: figure out location in player.py
                 print("loaded data")
 
     def getJSON(self, menu, tarid):
-        self.scene = menu
+        self.scenes = menu
         print(f">getJSON DEBUG: ID{self.id}, ACT:{self.actionNotify}")
         with open("scenes.json", "r", encoding='utf-8') as file:
-          data = json.load(file) 
+          data = json.load(file)
           self.text = data[menu]
           for content in self.text:
               self.action = content.get("conditions")
@@ -38,13 +39,13 @@ class GameState: # TODO: figure out location in player.py
                   global sceneLoader
                   print(">Switching JSON Array")
                   self.id[2] = 0
-                  self.scene = self.id[2]
+                  self.scenes = self.id[2]
               else:
                  print("all json conditions failed")
 
 ####################################################################
-class inputSystem: # TODO: consider combining into menu system
-    FILE_DIR = Path(__file__) # TODO: path location  
+class InputSystem: # TODO: consider combining into menu system
+    FILE_DIR = Path(__file__) # TODO: path location
 
     def _init_(self):
       self.options = [] # storing user options
@@ -53,44 +54,34 @@ class inputSystem: # TODO: consider combining into menu system
       self.jason = {} # relating to save somehow
 
 
-class menuSystem:
+class MenuSystem:
     def __init__(self):
         self.menu = {}
 
     def mainMenu(self):
        print("ext game etc, future for difficulty")
     def startGame(self):
-        print("""\n
-    _      ____  _           _     _____ _                           _     
-   / \    | __ )| | __ _ ___| |_  |_   _| |__  _ __ ___  _   _  __ _| |__  
-  / _ \   |  _ \| |/ _` / __| __|   | | | '_ \| '__/ _ \| | | |/ _` | '_ \ 
- / ___ \  | |_) | | (_| \__ \ |_    | | | | | | | | (_) | |_| | (_| | | | |
-/_/__ \_\ |____/|_|\__,_|___/\__| _ |_| |_| |_|_|  \___/ \__,_|\__, |_| |_|
-|  _ \(_)_ __ ___   ___ _ __  ___(_) ___  _ __  ___            |___/       
-| | | | | '_ ` _ \ / _ \ '_ \/ __| |/ _ \| '_ \/ __|                       
-| |_| | | | | | | |  __/ | | \__ \ | (_) | | | \__ \                       
-|____/|_|_| |_| |_|\___|_| |_|___/_|\___/|_| |_|___/                       \n
-        """)
-        # scenes.getDialogue("menu")
+        scenes.getDialogue("logo")
+        scenes.getDialogue("menu")
 
     def saveGame(self):
         with open("save.json", "w") as f:
             json.dump(self.jason, f)
 
-    def endGame():
+    def endGame(self):
         gameState = False
 
 ############################ Loop and Exit Functions ############################
 if __name__ == "__main__":
-  while gameState:
-    if enablin:
+  while Game.state:
+    if initialize:
       scenes = dialogue(sceneLoader)
-      menu = menuSystem()
+      menu = MenuSystem()
       playing = Player()
       # econ = market()
       print("Initialized Game States")
-      enablin = False
+      initialize = False
     elif playing:
-      menu.startGame()
-    else: 
-       print("main while loop failed")
+        menu.startGame()
+    else:
+        print("main while loop failed")
