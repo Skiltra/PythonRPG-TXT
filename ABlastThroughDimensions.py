@@ -6,7 +6,6 @@ inventory = []
 element = []
 health = 100
 score = 0
-
 # Kiren
 def clear():
 

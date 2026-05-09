@@ -1,5 +1,5 @@
 # Overview
-Started as a collarative project dedicated to learning python a plot design was made as a team and everything in the `ABlastThroughDimensions.py` from *2024*, names given to it where [Times Ascent, A Blast Through Dimensions], this file is V0.1
+Started as a collaborative project dedicated to learning python a plot design was made as a team and everything in the `ABlastThroughDimensions.py` from *2024*, names given to it where [Times Ascent, A Blast Through Dimensions], this file is V0.1
 
 This is the V0.2 version (`python v3.12`)from the first file using the same general plot, but making it more scalable which the other file from *Oct 2024*. isnt. This is mostly a personal project to make it more efficient which isnt suppose to be impressive.git config --global gpg.format ssh
 
@@ -7,7 +7,7 @@ This is the V0.2 version (`python v3.12`)from the first file using the same gene
 # <u>Documentation</u>
 Trying to describe the general idea around the functions that may or may not exist
 ## 1 Parsing
-Technically its just loading data into a thing called parser but it deal with handing over the relevant segments of data to modules
+Technically its just loading data into a thing called parser, but it deals with handing over the relevant segments of data to modules
 
 ## 2 Player & NPC Objects
 - [ ] Inventory Mention

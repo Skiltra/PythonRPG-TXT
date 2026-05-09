@@ -1,8 +1,8 @@
 ###########################################// Events: \\#############################################
 import random
 import json
-import Scripts.player as play
-from Scripts.player import Behaviour
+import Game.player as play
+from Game.player import Behaviour
 from time import sleep
 from market import Economy
 

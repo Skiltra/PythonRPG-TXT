@@ -1,4 +1,16 @@
 {
+  "logo": [
+    "    _      ____  _           _     _____ _                           _     ",
+    "   / \\    | __ )| | __ _ ___| |_  |_   _| |__  _ __ ___  _   _  __ _| |__  ",
+    "  / _ \\   |  _ \\| |/ _` / __| __|   | | | '_ \\| '__/ _ \\| | | |/ _` | '_ \\ ",
+    " / ___ \\  | |_) | | (_| \\__ \\ |_    | | | | | | | | (_) | |_| | (_| | | | |",
+    "/_/__ \\_\\ |____/|_|\\__,_|___/\\__| _ |_| |_| |_|_|  \\___/ \\__,_|\\__, |_| |_|",
+    "|  _ \\(_)_ __ ___   ___ _ __  ___(_) ___  _ __  ___            |___/       ",
+    "| | | | | '_ ` _ \\ / _ \\ '_ \\/ __| |/ _ \\| '_ \\/ __|                       ",
+    "| |_| | | | | | | |  __/ | | \\__ \\ | (_) | | | \\__ \\                       ",
+    "|____/|_|_| |_| |_|\\___|_| |_|___/_|\\___/|_| |_|___/                       "
+  ]
+
   "menu": [
     {
       "id": 0,
@@ -40,13 +52,13 @@
   "gameIntro": [
     {
       "id": 0,
-      "text": "You suddenly appear on a dirt road, you are beyond the time you was before, you remember something about being in a hospital and now you are knowwhere, this place looks strange, perhaps even you are hallucinating but who knows for sure",
+      "text": "You suddenly appear on a dirt road, you are beyond the time you was before, you remember something about being in a hospital and now you are nowhere, this place looks strange, perhaps even you are hallucinating but who knows for sure",
       "nextID": 1
     },
     {
       "id": 1,
       "conditions": "inputHandler('choices', [yesID2,noID3)",
-      "text": "As you turn around, you see a Waylayman, He asks you are you a Merchant?",
+      "text": "As you turn around, you see a Waylay man, He asks you are you a Merchant?",
       "nextID": 2
     },
     {
@@ -58,7 +70,7 @@
     {
       "id": 3,
       "conditions": "if self.variable == 3",
-      "text": "Your missing and oppurtunity of your life time",
+      "text": "Your missing and opportunity of your life time",
       "nextID": 4
     },
     {
@@ -70,7 +82,7 @@
     {
       "id": 5,
       "conditions": "inputHandler('choices', ['village', 'forest', 'bandit camp'])",
-      "text": "the Waylayman speaks:'To the West there is a village, to your North there is a forest and to the East is a bandit camp.'",
+      "text": "the Waylay man speaks:'To the West there is a village, to your North there is a forest and to the East is a bandit camp.'",
       "nextID": "forest"
     }
   ],
@@ -88,25 +100,25 @@
     },
     {
       "id": 2,
-      "text": "well hello {scenes.variable}, ive got a task for you which i will reward but you must do something for me first, im no warrior so i dont venture too deep into the forest but maybe you can, there a special herb i need in the west get taht for me and i will reward you",
+      "text": "well hello {scenes.variable}, ive got a task for you which i will reward but you must do something for me first, im no warrior so i dont venture too deep into the forest but maybe you can, there a special herb i need in the west get that for me and i will reward you",
       "nextID": 3
     },
     {
       "id": 3,
-      "conditions": "inputHandler('type', ['hern', 'flower']), player.inventory('scenes.variable')",
+      "conditions": "inputHandler('type', ['Hern', 'flower']), player.inventory('scenes.variable')",
       "text": "You venture deep and come across two plants next to each other ones is a herb and the other is a flower",
       "nextID": 4
     },
     {
       "id": 4,
       "conditions": "inputHandler('determine',[ID6,ID5])",
-      "text": "You sucessfully make it back to the witch, you give her the item and she begins to check it",
+      "text": "You successfully make it back to the witch, you give her the item and she begins to check it",
       "nextID": 6
     },
     {
       "id": 5,
       "conditions": "then characters['witch']['relation'] -= 1",
-      "text": "she states 'This is not the correct plant. However if you go to the Obsidan, near the mountain then this will be disregarded' she pauses then 'there a better plant i want get  that and we are fine'",
+      "text": "she states 'This is not the correct plant. However if you go to the Obsidian, near the mountain then this will be disregarded' she pauses then 'there a better plant i want get  that and we are fine'",
       "nextID": 7
     },
     {
@@ -117,7 +129,7 @@
     },
     {
       "id": 7,
-      "text": "the witch gave you intruction about a mine that she would like you to optionally get, you decide to go that way",
+      "text": "the witch gave you instruction about a mine that she would like you to optionally get, you decide to go that way",
       "nextID": 8
     },
     {
@@ -152,7 +164,7 @@
 
     {
       "id": 2,
-      "text": "He asks you to help them and explains the lord is trying to crush the farmers rebellion that has occured in the village due to tax increases",
+      "text": "He asks you to help them and explains the lord is trying to crush the farmers rebellion that has occurred in the village due to tax increases",
       "nextID": 3
     },
     {
@@ -213,7 +225,7 @@
     },
     {
       "id": 3,
-      "text": "the elder speaks, 'well you see I need a specific herb, it has magical properties unfrotunetly neither of my servant here that tend my farm are brave enough, so I would ask you to go into the cave its along the path to the mountain",
+      "text": "the elder speaks, 'well you see I need a specific herb, it has magical properties unfortunately neither of my servant here that tend my farm are brave enough, so I would ask you to go into the cave its along the path to the mountain",
       "nextID":  4
     },
     {
@@ -285,13 +297,13 @@
     {
       "id": 2,
       "conditions": "'banditConvoHeard' in conditions then condition.append('banditsHeard)",
-      "text": "You spied on the bandits and visited the goblin camp to find out how to use water on the dragon. \n with the power of water you succeed in the dragon fight, get for this beating the dragon. the dragon evaraporates and has to flee.",
+      "text": "You spied on the bandits and visited the goblin camp to find out how to use water on the dragon. \n with the power of water you succeed in the dragon fight, get for this beating the dragon. the dragon evaporates and has to flee.",
       "nextID": 3
     },
     {
       "id": 3,
       "conditions": "if 'antidote' player.inventory then player.health +=20",
-      "text": "You spied on the bandits and went straight to Obsidan Mine. \n when the dragon attacks you, you manage to scrape the dragon to make it bleed. The Dragon escapes."
+      "text": "You spied on the bandits and went straight to Obsidian Mine. \n when the dragon attacks you, you manage to scrape the dragon to make it bleed. The Dragon escapes."
     },
     {
       "id": 4,
@@ -301,7 +313,7 @@
   "C2chase": [
     {
       "id": 0,
-      "text": "\n The player changes into a new time period, as the watch was glowing now and it opened a new path for him towards an office.\n As you enter the office, there is a note that talks about a ritual to beat the dragon. \n Before you can move any further, a man appears, who starts running away from you.\n. You chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done. \n The enemey assilant tells you to stop, you do not know what you are dealing with, he says. Then he shifts away into another dimension \n",
+      "text": "\n The player changes into a new time period, as the watch was glowing now and it opened a new path for him towards an office.\n As you enter the office, there is a note that talks about a ritual to beat the dragon. \n Before you can move any further, a man appears, who starts running away from you.\n. You chase him using your path from the watch. When you speak to him he seems to want to undo all the actions you have done. \n The enemy assailant tells you to stop, you do not know what you are dealing with, he says. Then he shifts away into another dimension \n",
       "nextID": 1
     },
     {
@@ -390,7 +402,7 @@
     },
     {
       "id": 23,
-      "text": "you go to the unmarked crate instead but have to move becausse you hear vocie so you flee through a door on the ship further in",
+      "text": "you go to the unmarked crate instead but have to move because you hear voice so you flee through a door on the ship further in",
       "nextID": "ship"
     }
   ],
@@ -409,13 +421,13 @@
     },
     {
       "id": 2,
-      "text": "Having no other option you sprint your way as they fire guns on you, you manage to escape their sight but now mmust find somewhere new to hide, ",
+      "text": "Having no other option you sprint your way as they fire guns on you, you manage to escape their sight but now must find somewhere new to hide, ",
       "nextID": 3
     },
     {
       "id": 3,
       "conditions": "then inputHandler(variable='hiding')",
-      "text": "Where do you hide, there a crate just randomly out and theres a small building with the lights on",
+      "text": "Where do you hide, there a crate just randomly out and there's a small building with the lights on",
       "nextID": 4
     },
     {
@@ -495,7 +507,7 @@
       {
         "id": 3,
         "conditions": "if inputHandler(variable='determine', 'fail') then player.score += 10",
-        "text": "You attempt to launch an attack on him, but he flees before you can. You follow a blood trail of a stone alligned in the forest patch and puzzle",
+        "text": "You attempt to launch an attack on him, but he flees before you can. You follow a blood trail of a stone aligned in the forest patch and puzzle",
         "nextID": "puzzle"
       }
     ],
@@ -572,18 +584,18 @@
       {
         "id": 2, 
         "conditions": "inputHandler('confirm', [True=3, False=0])",
-        "text": "coming upto the bridge you realize this bridge is weak and rigedy, do you continue",
+        "text": "coming upto the bridge you realize this bridge is weak and raggedy, do you continue",
         "nextID": 3
       },
       {
         "id": 3,
         "conditions": "then player.inventory('lockpick')",
-        "text": "you cross the bridge and it collapases dropping you into the river getting swept up in it's current. \n You wash up on a beach a your watch starts to glow, you notice a object letting of the same glow and pick it up.",
+        "text": "you cross the bridge and it collapses dropping you into the river getting swept up in it's current. \n You wash up on a beach a your watch starts to glow, you notice a object letting of the same glow and pick it up.",
         "nextID": "cabin"
       },
       {
         "id": 4,
-        "text": "You reach a cave entrace and find yourself standing at the entrance of a dark ominous cave",
+        "text": "You reach a cave entrance and find yourself standing at the entrance of a dark ominous cave",
         "nextID": 5
       },
       {
@@ -634,19 +646,19 @@
       {
         "id": 4,
         "conditions": "if lockpick is in player.inventory then player.inventory('companion'), player.inventory('glowing berries', player.remove('lockpick))",
-        "text": "you figure maybe the magically lockpick is what it wants, it seem to accept it and follows you to what looks like your only path is througha  dragon pit",
+        "text": "you figure maybe the magically lockpick is what it wants, it seem to accept it and follows you to what looks like your only path is through a dragon pit",
         "nextID": "dragonFound"
       },
       {
         "id": 5,
-        "text": "you do not have anything to barter and it seem to disppear you are confronted with a uneasy truth your only way forward is intoa  dragons pit, likely the one you faced earlier",
+        "text": "you do not have anything to barter and it seem to disappear you are confronted with a uneasy truth your only way forward is into a dragons pit, likely the one you faced earlier",
         "nextID": "dragonFound"
       }
     ],
   "dragonFound": [
       {
         "id": 0,
-        "text": "you reach the pit with moutnains surrounding you on a large plain around it, but a man get in your way and begin to attack clearly wanting to fight the dragon for some reason",
+        "text": "you reach the pit with mountains surrounding you on a large plain around it, but a man get in your way and begin to attack clearly wanting to fight the dragon for some reason",
         "nextID": "inputHandler('determine', [ID1,ID2,ID3])"
       },
       {
@@ -670,19 +682,19 @@
       {
         "id": 4,
         "conditions": "inputHandler('determine', [ID5,ID6])",
-        "text": "you are poisened",
+        "text": "you are poisoned",
         "nextID": 5
       },
       {
         "id": 5,
         "conditions": "if 'antidote' in player.inventory then player.remove('antidote')",
-        "text": "He amanged to slice you wiht his sword and poisens you luckily you use your antidote and you defeat him",
+        "text": "He managed to slice you with his sword and poisons you luckily you use your antidote and you defeat him",
         "nextID": "dragonFight"
       },
       {
         "id": 6,
         "conditions": "then player.health -= 20",
-        "text": "you are poisended but fortunately you defeat him, although you still are dealt damage",
+        "text": "you are poisoned but fortunately you defeat him, although you still are dealt damage",
         "nextID": "dragonFight"
       }
     ],
@@ -702,7 +714,7 @@
       {
         "id": 2,
         "conditions": "'companion' in player.inventory then player.score +=40, player.remove('companion'), player.inventory('corrupted')",
-        "text": "Unfortunely your alien friend fight the dragon as you flank but your alien friend evaporate but you manage to take the dragon our",
+        "text": "Unfortunately your alien friend fight the dragon as you flank but your alien friend evaporate but you manage to take the dragon our",
         "nextID": "endGame"
       }
     ],
