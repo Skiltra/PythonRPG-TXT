@@ -1,11 +1,11 @@
-###########################################// TESTING \\#############################################
 """market is supposed to be buying/sell and market mechanics, economy is the self-explanatory"""
-from mgrMarket import Markets
-from mgrEvents import RollSystem as roller# for npc behaviour determination
+from Game.modRandom import RollSystem # for npc behaviour determination
+from Game.modInventory import Inventory
+from Game.modInventory import Location
 
 # TODO: handle persistent and non persistent NPC
 
-class Behaviour(roller):
+class Behaviour(RollSystem):
     stateFocus = "live" # Handles what is available by instances and stops processes if needed
     def __init__(self, type, health=100):
         self.name = type
@@ -21,25 +21,17 @@ class Behaviour(roller):
             print("delete this somehow")
     
     def attack(self):
-        value = roller.basic()
+        value = RollSystem.basic()
         if value > 2:
             self.flags += 1 # TODO: make relative addition instead of static
 
-class PlayFeatures:
-    def __init__(self):
-        return
 
-    def Inventory(self):
-        return
-    def Location(self): # dating and location
-        return
 
 # TODO: Implement npc and player relation system
 
 ###################################LIVING OBJECTS###################################
-class Player(Inventory, locations):
+class Player(Inventory, Location):
     def __init__(self):
-        self.inventory = Inventory()
         self.element = None
         self.health = 100
         self.morality = 5.0
@@ -48,8 +40,7 @@ class Player(Inventory, locations):
 
 
 
-class npcs(Behaviour, hasInventory=False, companion=False): # TODO: loot/enemy toggle
+class Npcs(Behaviour, companion=False): # TODO: loot/enemy toggle
     def __init__(self):
         Behaviour.__init__()
-        self.inventory = Inventory() if hasInventory else None # TODO: Test this works
-        
+

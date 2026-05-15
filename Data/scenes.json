@@ -9,7 +9,7 @@
     "| | | | | '_ ` _ \\ / _ \\ '_ \\/ __| |/ _ \\| '_ \\/ __|                       ",
     "| |_| | | | | | | |  __/ | | \\__ \\ | (_) | | | \\__ \\                       ",
     "|____/|_|_| |_| |_|\\___|_| |_|___/_|\\___/|_| |_|___/                       "
-  ]
+  ],
 
   "menu": [
     {
@@ -105,7 +105,7 @@
     },
     {
       "id": 3,
-      "conditions": "inputHandler('type', ['Hern', 'flower']), player.inventory('scenes.variable')",
+      "conditions": "inputHandler('type', ['Fern', 'Flower']), player.inventory('scenes.variable')",
       "text": "You venture deep and come across two plants next to each other ones is a herb and the other is a flower",
       "nextID": 4
     },

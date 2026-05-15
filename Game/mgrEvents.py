@@ -1,9 +1,8 @@
 ###########################################// Events: \\#############################################
-from Game.modRandom import RollSystem
-import Game.player as play
-from Game.player import Behaviour
+from Game.modRandom import RollSystem as roll
+# from Game.mgrActors import Behaviour
 from time import sleep
-from market import Economy
+# from mgrMarket import Economy
 
 
 class Eventsystem:
@@ -12,7 +11,7 @@ class Eventsystem:
         print("instance event initialized")
 
     def randomEvent(self):
-        number = random.randint(1,7)
+        number = roll.randint(1,7)
         print("was in plannign for original never implemented")
     
     def mapMode(self):
@@ -41,8 +40,3 @@ class DialogueManager:
             global sceneLoader
             self.scene = self.id[2]
             sceneLoader = self.getJSON(self.scene, self.id[2])      
-
-# TODO: Replace with mgrNumbers
-## READ: factor1 + factor2 / 2 = combined then combined < roll = True (flag made)
-
-

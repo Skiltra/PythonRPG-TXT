@@ -26,8 +26,8 @@ class Economy:
 
     
     def makeEconomy(self):
-         newGrowth = random.random() # TODO: make this based on something else
-         self.growth *= newGrowth
+         new_growth = random.random() # TODO: make this based on something else
+         self.growth *= new_growth
          print("set supply of the market class")
          print("set new growth // should be based on something else")
 
