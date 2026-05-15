@@ -1,7 +1,7 @@
 ###########################################// TESTING \\#############################################
 """market is supposed to be buying/sell and market mechanics, economy is the self-explanatory"""
-from market import Markets
-from events import RollSystem as roller# for npc behaviour determination
+from mgrMarket import Markets
+from mgrEvents import RollSystem as roller# for npc behaviour determination
 
 # TODO: handle persistent and non persistent NPC
 
